@@ -1,0 +1,45 @@
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a href="/" class="navbar-brand">AccordionFair</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="shop">Shop</a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link" routerLink="register">Register</a>
+                </li>
+                <li class="nav-item mr-auto">
+                    <a class="nav-link" routerLink="orders">Orders</a>
+                </li>
+                
+            </ul>
+            <div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <p class="text-secondary">Current Bitcoin Price: {{ btcPrice }}  <i class="fa fa-usd"></i></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<router-outlet></router-outlet>
+
+<footer class="text-center text-light fixed-bottom">Copyright 2018 Accordion Fair LLC</footer>

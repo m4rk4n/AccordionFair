@@ -1,0 +1,11 @@
+﻿<h1>All the orders:</h1>
+<h4 *ngIf="data.adminOrders.length > 0"> # of orders: {{ orders.length }}</h4>
+<div  *ngIf="data.adminOrders.length > 0">
+
+    <div class="row" *ngFor="let o of orders">
+
+            <h6>Received Value of order : {{ o.receivedValue }}</h6>
+    </div>
+
+
+</div>

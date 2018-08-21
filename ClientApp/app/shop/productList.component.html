@@ -1,0 +1,45 @@
+﻿<div class="container">
+
+    <!-- Page Heading -->
+    <h1 class="my-4">
+        Worldwide Brands
+        <small>Bitcoin Accepted</small>
+    </h1>
+
+    <!-- Project One -->
+    <div class="row" *ngFor="let p of products">
+        <div class="col-md-7">
+            <a (click)="addProduct(p)">
+                <img src="/img/productImg/{{p.artId}}.jpg" class="img-fluid" alt="{{ p.title}}" />
+            </a>
+        </div>
+        <div class="col-md-5">
+            <div class="product-name"><strong>{{p.title}}</strong></div>
+            <br />
+            <div><strong>Price: </strong>{{ p.price | currency:"USD":true}}</div>
+            <div><strong>Size: </strong> {{ p.size }}</div>
+            <div><strong>Keys: </strong> {{ p.keys }}</div>
+            <div><strong>Reeds: </strong> {{ p.reeds }}</div>
+            <div><strong>Registers: </strong> {{ p.registers }}</div>
+            <div><strong>Basses: </strong> {{ p.basses }}</div>
+            <div><strong>Weight: </strong> {{ p.weight }}</div>
+            <div><strong>Cassoto: </strong> {{ p.cassoto }}</div>
+
+
+            <button id="buyButton" class="btn text-light bg-dark btn-lg float-right" (click)="addProduct(p)">Add To Cart</button>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!--<div class="card bg-faded col-md-4" *ngFor="let p of products">
+        <div class="card-block">
+            <img src="/img/productImg/{{p.artId}}.jpg" class="img-fluid" alt="{{ p.title}}" />
+            <div class="product-name">{{ p.category}} - {{p.size}}</div>
+            <div><strong>Price: </strong>{{ p.price | currency:"USD":true}}</div>
+            <div><strong>Title: </strong> {{ p.title }}</div>
+            <button id="buyButton" class="btn btn-success btn-sm float-right" (click)="addProduct(p)">Buy</button>
+        </div>
+    </div>-->
+
+
+</div>

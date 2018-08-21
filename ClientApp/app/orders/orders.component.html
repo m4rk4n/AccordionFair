@@ -1,0 +1,66 @@
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<h1 class="text-center">All the orders:</h1>
+<h4 class="text-center" *ngIf="data.ordersByUser.length > 0"> # of orders: {{ orders.length }}</h4>
+<div *ngIf="data.ordersByUser.length > 0">
+
+    <div *ngFor="let o of orders">
+
+            <h5>Order {{ o.orderNumber}} Info</h5>
+            <h6>Name: {{ o.user.firstName }}  {{o.user.lastName}}</h6>
+            <h6>Email: {{ o.user.email }}</h6>
+
+            <h6 class="">Bitcoin Address: {{ o.bitcoinAddress }}</h6>
+            <!--<h6 class="">Required Value: {{ o.requiredValue}}</h6>-->
+            <h6 class="">Received Value for order : {{ o.receivedValue }} <i class="fa fa-btc"></i></h6>
+            <h6 class="">More than necessary has been paid: {{ o.moreThanNecessary }}</h6>
+            <h6 class="">Payment is valid: {{ o.orderPaymentValid }}</h6>
+            <h6 class="">Time of the order: {{ o.orderDate | date: 'medium' }}</h6>
+            <!--<h6 class="">Order transactions confirmed: {{ o.orderTransactionsConfirmed }}</h6>-->
+            <br />
+
+            <h5>Order items: </h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price per Unit </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of o.items">
+                        <td>{{ i.product.title }}</td>
+                        <td>{{ i.quantity }}</td>
+                        <td>{{ i.unitPrice }} <i class="fa fa-usd"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <!--TOTAL!!!-->
+            <div *ngIf="o.transactions.length > 0">
+                <h5>Order Transactions: </h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Transaction Id</th>
+                            <th>Transaction Amount <i class="fa fa-btc"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of o.transactions">
+                            <td>{{ t.transactionId }}</td>
+                            <td>{{ t.amount }} <i class="fa fa-btc"></i></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><strong>Total: {{ o.receivedValue }} <i class="fa fa-btc"></i></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br /><br /><br />
+    </div>
+</div>

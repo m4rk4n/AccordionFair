@@ -1,0 +1,32 @@
+{
+  "ConnectionStrings": {
+    "AccordionConnectionString": "server=(localdb)\\MSSQLLocalDB;Database=AccordionFairDb;Integrated Security=true;MultipleActiveResultSets=true"
+  },
+
+  "Logging": {
+    "LogLevel": {
+      "AccordionFair": "Information",
+      "Microsoft": "Warning"
+
+    }
+  },
+
+  "Tokens": {
+    "Key": ";asdlkfh;ahgpjajdga",
+    "issuer": "localhost",
+    "Audience": "users",
+    "roles": [ "Admin", "User" ]
+  },
+
+  "EmailSettings": {
+    "PrimaryDomain": "smtp.gmail.com",
+    "PrimaryPort": "587",
+    "SecondayDomain": "smtp.live.com",
+    "SecondaryPort": "587",
+    "UsernameEmail": "accordionfair@gmail.com",
+    "UsernamePassword": "SajamHarmonika",
+    "FromEmail": "fromEmail",
+    "ToEmail": "toEmail",
+    "CcEmail": "ccEmail"
+  }
+}

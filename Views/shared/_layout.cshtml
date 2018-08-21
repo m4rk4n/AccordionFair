@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Accordion Fair</title>
+    @*<link href="~/css/site.css" rel="stylesheet" />*@
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@ 
+</head>
+<body>
+    @*<header>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a asp-controller="App" asp-action="Index" class="navbar-brand">AccordionFair</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" asp-controller="App" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="App" asp-action="Shop">Shop</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <h1>Welcome to Accordion Fair</h1>
+    </header>*@
+    <section>
+        @*<h2>@ViewBag.Title</h2>*@
+        @RenderBody()
+    </section>
+
+
+
+
+    @*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script> @*needed for contact and login pages, should be removed from others*@
+    @* <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="~/ClientApp/dist/inline.bundle.js"></script>
+    <script src="~/ClientApp/dist/polyfills.bundle.js"></script>
+    <script src="~/ClientApp/dist/styles.bundle.js"></script>
+    <script src="~/ClientApp/dist/vendor.bundle.js"></script>
+    <script src="~/ClientApp/dist/main.bundle.js"></script>
+</body>
+</html>

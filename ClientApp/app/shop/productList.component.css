@@ -1,0 +1,12 @@
+﻿.card-block img{
+    max-width: 100px;
+    float:left;
+    margin: 10px  5px;
+    border: solid 1px black;
+}
+
+
+.card-block .product-name{
+    font-size:large;
+    font-weight:bold;
+}

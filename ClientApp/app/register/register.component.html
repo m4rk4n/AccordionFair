@@ -1,0 +1,43 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
+            <form (submit)="onRegister()" #theForm="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="userInfo.userName" #username="ngModel" required />
+                    <div class="text-danger" *ngIf="username.touched && username.invalid && username.errors.required">Username is required!</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="userInfo.firstName" #firstname="ngModel" required />
+                    <div class="text-danger" *ngIf="firstname.touched && firstname.invalid && firstname.errors.required">First name is required!</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="userInfo.lastName" #lastname="ngModel" required />
+                    <div class="text-danger" *ngIf="lastname.touched && lastname.invalid && lastname.errors.required">Last name is required!</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" name="email" [(ngModel)]="userInfo.email" #email="ngModel" required />
+                    <div class="text-danger" *ngIf="email.touched && email.invalid && email.errors.required">Email is required!</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="userInfo.password" required #password="ngModel" />
+                    <div class="text-danger" *ngIf="password.touched && password.invalid && password.errors.required">Password is required!</div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Register" [disabled]="theForm.invalid" />
+                    <a routerLink="/" class="btn btn-default">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
