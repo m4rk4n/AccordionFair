@@ -14,8 +14,8 @@ export class AppComponent {
         this.data.getBtcPrice()
             .subscribe(success => {
                 if (success) {
-                    this.btcPrice = this.data.btcPrice.toString();
-                    this.btcPrice = this.btcPrice.substring(0, this.btcPrice.length-2);
+                   // this.btcPrice = this.data.btcPrice;
+                    this.btcPrice = this.data.btcPrice.toFixed(2);
                 }
             });
     }

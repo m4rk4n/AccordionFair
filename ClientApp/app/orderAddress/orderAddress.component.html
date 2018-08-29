@@ -13,14 +13,14 @@
     </h1>
 
     <div class="justify-content-center" *ngIf="orderAddress">
-        <qrcode [qrdata]="orderAddress" [size]="256" [level]="'M'"></qrcode>
+        <qrcode [qrdata]="orderQRInfo" [size]="256" [level]="'M'"></qrcode>
     </div>
     <div *ngIf="order">
 
         <h3>Here are details of your order: </h3>
         <h6>Order Total: {{ order.orderTotalInUSD }}<i class="fa fa-usd"></i></h6>
 
-        <h6>Order Total in Bitcoin: {{ order.orderTotalInBitcoin }}<i class="fa fa-btc"></i></h6>
+        <h6>Order Total in Bitcoin: {{ order.orderTotalInBitcoin | number:'1.1-8'}}<i class="fa fa-btc"></i></h6>
 
         <h5>Order items: </h5>
         <table class="table">
@@ -44,7 +44,7 @@
     <h2 class="text-danger" *ngIf="paymentNotSatisfied">{{ sumOfTransactions }}<i class="fa fa-btc"></i> has been paid!</h2>
     <h2 class="text-success" *ngIf="paymentCorrect">Order has been paid for!</h2>
     <h4 class="text-success" *ngIf="paymentExceeded">You paid {{ paymentDiffBTC }}<i class="fa fa-btc"></i> more!</h4>
-    <h4 class="text-info" *ngIf="paymentNotSatisfied && (sumOfTransactions != 0)">You paid {{ sumOfTransactions }}<i class="fa fa-btc"></i>, to complete purchase please pay {{ order.orderTotalInBitcoin - sumOfTransactions }}<i class="fa fa-btc"></i> more!</h4>
+    <h4 class="text-info" *ngIf="paymentNotSatisfied && (sumOfTransactions != 0)">You paid {{ sumOfTransactions }}<i class="fa fa-btc"></i>, to complete purchase please pay {{ (order.orderTotalInBitcoin - sumOfTransactions) | number:'1.1-8'}}<i class="fa fa-btc"></i> more!</h4>
 
     <h6 class="text-secondary">Transactions for this order:</h6>
     <ul id="messagesList"></ul>

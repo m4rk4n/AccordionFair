@@ -69,9 +69,6 @@ var DataService = /** @class */ (function () {
             _this.orderFromServer = data;
             _this.orderAddress = data.bitcoinAddress; // jednoo maket
             _this.order.orderAddress = data.bitcoinAddress;
-            // ugly but works, SETTING TOTALS HERE
-            _this.order.orderTotalInBitcoin = data.OrderTotalInBTC;
-            _this.order.orderTotalInUSD = data.OrderTotalInUSD;
             return true;
         });
     };
@@ -103,10 +100,13 @@ var DataService = /** @class */ (function () {
     DataService.prototype.getBtcPrice = function () {
         var _this = this;
         return this.http
-            .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+            // .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+            .get("https://blockchain.info/ticker")
             .map(function (data) {
-            _this.btcPrice = data.bpi.USD.rate;
-            //this.btcPrice = this.btcPrice.substring(0, this.btcPrice.length - 2);
+            // this.btcPrice = data.bpi.USD.rate;
+            _this.btcPrice = data.USD.sell;
+            //  this.btcPrice = Number.parseFloat(Number.parseFloat(this.btcPrice.toString()).toPrecision(8));
+            // this.btcPrice = +this.btcPrice.toFixed(8); // with + operator, a conversion from string to number happens
             _this.order.btcPrice = _this.btcPrice;
             return true;
         });

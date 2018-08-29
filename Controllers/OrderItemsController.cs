@@ -19,15 +19,12 @@ namespace AccordionFair.Controllers
     public class OrderItemsController : Controller
     {
         private readonly IAccordionRepository repo;
-        private readonly ILogger logger;
         private readonly IMapper mapper;
 
         public OrderItemsController(IAccordionRepository repo,
-            ILogger<OrderItemsController> logger,
             IMapper mapper)
         {
             this.repo = repo;
-            this.logger = logger;
             this.mapper = mapper;
         }
 
@@ -43,7 +40,6 @@ namespace AccordionFair.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int orderId, int id) // id is orderItemId
         {
-            //var order = repo.GetOrderById(orderId);
             var order = repo.GetOrderById(User.Identity.Name, orderId);
             if (order != null)
             {
@@ -57,7 +53,5 @@ namespace AccordionFair.Controllers
             
             return NotFound();
         }
-
-        //create methods for post and delete and update, ima indepth course
     }
 }

@@ -22,7 +22,7 @@ namespace AccordionFair.Data
         }
 
 
-        public void AddEntity(object model) // ne svidja mi se  // generic shit
+        public void AddEntity(object model)
         {
             ctx.Add(model);
         }
@@ -34,7 +34,6 @@ namespace AccordionFair.Data
 
         public void AddOrder(Order newOrder)
         {
-            //  Convert new products to lookup of product
             foreach(var item in newOrder.Items)
             {
                 item.Product = ctx.Products.Find(item.Product.Id);
@@ -54,11 +53,11 @@ namespace AccordionFair.Data
 
         public IEnumerable<Order> GetAllOrders(bool includeItems)
         {
-            if(includeItems == true)
+            if (includeItems)
             {
                 return ctx.Orders
               .Include(o => o.User)
-              .Include(o => o.OrderDate) // test if single value nav properties require include
+              .Include(o => o.OrderDate) 
               .Include(o => o.Transactions)
               .Include(o => o.Items)
               .ThenInclude(i => i.Product)
@@ -125,7 +124,7 @@ namespace AccordionFair.Data
             }
         }
 
-        public Order GetOrderById(int id) // better to disable this one -- if someone asks for order thats not theirs, it will get null
+        public Order GetOrderById(int id)
         {
             return ctx.Orders
                .Include(o => o.Items)

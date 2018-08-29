@@ -16,6 +16,7 @@ var OrderAddress = /** @class */ (function () {
     function OrderAddress(data) {
         this.data = data;
         this.orderAddress = "";
+        this.orderQRInfo = "";
         this.msgs = [];
         this.payments = [];
         this.sumOfTransactions = 0;
@@ -38,14 +39,18 @@ var OrderAddress = /** @class */ (function () {
             if (success) {
                 _this.order = _this.data.orderFromServer;
                 _this.orderAddress = _this.data.orderAddress;
+                // bitcoin: mx2Bti4RUvXK5r61GC1ZnfuWmBeVazxv5m ? amount = 1
+                _this.orderQRInfo = "bitcoin:" + _this.orderAddress + "?" + "amount=" + _this.order.orderTotalInBitcoin;
                 // stavio ovdje jer ce se samo odavde samo jednom zavrtit jer ako stavim van subscribe u ngInit tad se izvrsi malo prije nego subscribe zavrsi
                 // a ruzno mi je da se izvrsava u connection funkciji svaki put kad transakcija dodje
                 console.log(_this.order);
+                console.log(_this.orderQRInfo);
             }
             else {
                 console.log("ngOnInit orderAddress, getOrderAddress is not success");
             }
         });
+        console.log("QR" + this.orderQRInfo);
         console.log("this order after getOrderAddress" + this.order + " " + Date.now().toString());
         //this order after getOrderAddressundefined 1532523876659 prije od
         //                                          1532523876672 

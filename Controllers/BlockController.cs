@@ -45,22 +45,12 @@ namespace AccordionFair.Controllers
             cred.UserPassword = new NetworkCredential("marko", "nekadugasifra");
             RPCClient client = new RPCClient(cred, Network.TestNet);
 
-
-
-            // var from = "Mailgun Sandbox <postmaster@sandbox373a0adacb504546b940efac85bb4e7a.mailgun.org>";
-            //var to = "Marko Filipovic <markofilipovicnt@hotmail.com>";
-            //string subject = "stelovanje maila";
-            //string body = "Ovdje ce ici poruka kad je bude!";
-            //await mailService.SendEmailAsync(to ,subject, body);
-
-
-
             foreach (var order in repo.GetAllOrders())
             {
                 if (order.DisregardOrder)
                     continue;
 
-                if (order.OrderDate.AddDays(2) < DateTime.Now && order.ReceivedValue == 0) // 2 days or more has passed since order has been placed and nothing has been payed
+                if (order.OrderDate.AddMinutes(15) < DateTime.Now && order.ReceivedValue == 0) //15 minutes or more has passed since order has been placed and nothing has been payed
                     order.DisregardOrder = true;
 
 
@@ -90,14 +80,6 @@ namespace AccordionFair.Controllers
                     }
                 }
             }
-
-            // foreach order
-            //  foreach tx in order
-            //      
-            //      if tx.conf < 6
-            //          break  // predji na sljedeci order
-            //      
-
         }
     }
 }

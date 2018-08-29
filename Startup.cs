@@ -39,13 +39,11 @@ namespace AccordionFair
             })
                 .AddEntityFrameworkStores<AccordionContext>();
 
-            services.AddAuthentication(options => // remove the   options if Cookie auth is desired
+            services.AddAuthentication(options => 
             {
-
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-               // .AddCookie() // disable cookie autenthication
                 .AddJwtBearer(cfg =>
                 {
                     cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
@@ -81,15 +79,14 @@ namespace AccordionFair
 
             services.AddMvc(opt =>
             {
-                if (env.IsProduction())
-                {
-                    opt.Filters.Add(new RequireHttpsAttribute()); // possible to specify certain controllers for https, this way whole site goes https
-                }
+                //if (env.IsProduction())
+                //{
+                //    opt.Filters.Add(new RequireHttpsAttribute());
+                //}
             })
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper();
-            // with the option ignore, it just trim off self-referencing object
             services.AddTransient<AccordionSeeder>();
             services.AddScoped<IAccordionRepository, AccordionRepository>();
             services.AddDbContext<AccordionContext>(cfg =>
@@ -98,16 +95,12 @@ namespace AccordionFair
             });
 
 
-            // services.AddHostedService<TimedHostedService>();
-            // services.AddHostedService<ConsumeScopedServiceHostedService>();
-            //services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
              services.AddTransient<IMailService, MailService>();
             services.Configure<EmailSettings>(config.GetSection("EmailSettings"));
             services.AddSignalR();
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if(env.IsDevelopment())
@@ -122,32 +115,28 @@ namespace AccordionFair
 
             app.UseStaticFiles();
 
-            app.UseAuthentication(); // make sure it's before mvc, middleware pipeline jbg
+            app.UseAuthentication();
 
             app.UseSignalR(routes =>
             {
                 routes.MapHub<NotifyHub>("/notifyHub");
-                // konfigurirat trajanja konekcije i slicno
             });
 
             app.UseMvc(cfg =>
             {
                 cfg.MapRoute("Default",
                     "/{controller}/{action}/{id?}",
-                    new { controller = "App", Action = "Index" }); // if there is no route supplied, use this one as default
+                    new { controller = "App", Action = "Index" }); 
             });
 
             if  (env.IsDevelopment())
             {
-                // seed the database
                 using (var scope = app.ApplicationServices.CreateScope())
                 {
                     var seeder = scope.ServiceProvider.GetService<AccordionSeeder>();
-                    seeder.Seed().Wait(); // From async too sync :  )
+                    seeder.Seed().Wait(); 
                 }
             }
-
-            // possible to put a service here  that runs on startup
         }
     }
 }

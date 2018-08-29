@@ -15,7 +15,6 @@ namespace AccordionFair
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args)
-              //  .UseDefaultServiceProvider(options => options.ValidateScopes = false)  // BAD!
                     .Build()
                     .Run();
         }
@@ -25,7 +24,7 @@ namespace AccordionFair
                 .ConfigureAppConfiguration(SetupConfiguration)
                 .UseStartup<Startup>();
 
-        private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder) // different than asp.net and webconfig
+        private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder) 
         {
             builder.Sources.Clear();
 

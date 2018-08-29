@@ -14,20 +14,16 @@ namespace AccordionFair.Data
     public class AccordionSeeder
     {
         private readonly AccordionContext ctx;
-        private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment hosting;
         private readonly UserManager<StoreUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
 
         public AccordionSeeder(AccordionContext ctx,
-            IHostingEnvironment hosting,
             UserManager<StoreUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             this.ctx = ctx;
-            this.hosting = hosting;
             this.userManager = userManager;
             this.roleManager = roleManager;
-
         }
 
         public async Task Seed()
@@ -74,46 +70,8 @@ namespace AccordionFair.Data
                 }
             }
 
-
-
-
             if (!ctx.Products.Any())
             {
-                //var filepath = Path.Combine(hosting.ContentRootPath, "Data/art.json");
-                //var json = File.ReadAllText(filepath);
-                //var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
-                //ctx.Products.AddRange(products);
-
-                //var order = new Order()
-                //{
-                //    OrderDate = DateTime.Now,
-                //    OrderNumber = "12345",
-                //    User = user,
-                //    Items = new List<OrderItem>()
-                //    {
-                //        new OrderItem()
-                //        {
-                //            Product = products.First(),
-                //            Quantity = 5,
-                //            UnitPrice = products.First().Price
-                //        }
-                //    }
-                //};
-
-                //ctx.Orders.Add(order);
-
-                //         public int Id { get; set; }
-                //public string Category { get; set; }
-                //public string Size { get; set; }
-                //public double Price { get; set; }
-                //public string Title { get; set; }
-                //public int Keys { get; set; }
-                //public string Reeds { get; set; }
-                //public string Registers { get; set; }
-                //public int Basses { get; set; }
-                //public string Weight { get; set; }
-                //public bool Cassoto { get; set; } 
-
                 ctx.Products.AddRange(
                             new Product
                             {

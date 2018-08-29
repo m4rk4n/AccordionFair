@@ -69,26 +69,21 @@ namespace AccordionFair.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, false);
-                    //return RedirectToAction("Index", "App");
                     await mailService.SendEmailAsync(
                         user.Email,
                         "Your account has been created!",
                         "Feel free to comence with shopping"
                         );
-                    return Created("", user); // do i need to return the user?
+                    return Created("", user); 
                 }
 
                 logger.LogInformation("Failed to create a user, probably there is a user with same email or password don't adhere to rules");
-                //foreach (var error in result.Errors)
-                //{
-                //    ModelState.AddModelError("", error.Description);
-                //}
+
                 return BadRequest();
                 
             }
             logger.LogInformation("ModelState is not valid");
             return BadRequest();
-            // return View();
         }
 
 
@@ -146,7 +141,7 @@ namespace AccordionFair.Controllers
                 
                 if (user != null)
                 {
-                    var result = await signInManager.CheckPasswordSignInAsync(user, model.Password, false); // don't wanna sign them in with cookie
+                    var result = await signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
                     if(result.Succeeded)
                     {

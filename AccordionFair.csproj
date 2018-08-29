@@ -21,14 +21,4 @@
     <PackageReference Include="NBitcoin" Version="4.1.1.21" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="Pages\_ViewStart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Admin\" />
-  </ItemGroup>
-
 </Project>

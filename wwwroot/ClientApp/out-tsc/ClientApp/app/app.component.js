@@ -22,8 +22,8 @@ var AppComponent = /** @class */ (function () {
         this.data.getBtcPrice()
             .subscribe(function (success) {
             if (success) {
-                _this.btcPrice = _this.data.btcPrice.toString();
-                _this.btcPrice = _this.btcPrice.substring(0, _this.btcPrice.length - 2);
+                // this.btcPrice = this.data.btcPrice;
+                _this.btcPrice = _this.data.btcPrice.toFixed(2);
             }
         });
     }

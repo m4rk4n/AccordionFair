@@ -15,7 +15,7 @@ export class OrdersComponent implements OnInit {
     public ordersSet: boolean = false;
     public orders: Order[] = [];
 
-    ngOnInit() { // does this execute linearly?
+    ngOnInit() { 
         if (this.data.loginRequired) {
             console.log("rerouted to login from orders.component");
             this.data.ordersRequested = true;

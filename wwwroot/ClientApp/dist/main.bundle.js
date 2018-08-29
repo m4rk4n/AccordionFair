@@ -158,8 +158,8 @@ var AppComponent = (function () {
         this.data.getBtcPrice()
             .subscribe(function (success) {
             if (success) {
-                _this.btcPrice = _this.data.btcPrice.toString();
-                _this.btcPrice = _this.btcPrice.substring(0, _this.btcPrice.length - 2);
+                // this.btcPrice = this.data.btcPrice;
+                _this.btcPrice = _this.data.btcPrice.toFixed(2);
             }
         });
     }
@@ -359,7 +359,6 @@ var Checkout = (function () {
         this.data.checkout()
             .subscribe(function (success) {
             if (success) {
-                //this.router.navigate(["/"]);      // .then(result => { window.location.href = 'http://www.cnn.com/'; }); // navigate to address ordeer page :))))))))))))))))
                 _this.router.navigate(["order-address"]);
             }
         }, function (err) { return _this.errorMessage = "Failed to save order"; });
@@ -419,7 +418,7 @@ ContactComponent = __decorate([
 /***/ "../../../../../ClientApp/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<carousel class=\"slide\">\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_07.jpg\" alt=\"first slide\" class=\"img-fluid\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_02.jpg\" alt=\"second slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <!--<img src=\"assets/images/nature/3.jpg\" alt=\"third slide\" style=\"display: block; width: 100%;\">-->\r\n        <img src=\"/img/scandalli/2016_10_03.jpg\" alt=\"third slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_04.jpg\" alt=\"fouth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_05-1.jpg\" alt=\"fifth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_06.jpg\" alt=\"sixth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_01.jpg\" alt=\"seventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_08.jpg\" alt=\"eight slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_09.jpg\" alt=\"ninth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_10.jpg\" alt=\"tenth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/Bara_Zmekova_koncert_Cafe_Etage_PH11706_color-1.jpg\" alt=\"eleventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n</carousel>\r\n\r\n<!-- Page Features -->\r\n<div class=\"container\">\r\n    <div class=\"row text-center\">\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/scand2.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Scandalli</h4>\r\n                    <p class=\"card-text\">The Scandalli brand is an icon for many because of its long, distinguished history of innovation, prestige and quality.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Weltmeister.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Weltmeister</h4>\r\n                    <p class=\"card-text\">\r\n                        At Weltmeister Akkordeon Manufaktur GmbH, we supply\r\n                        the music world with Weltmeister solo, button, piano\r\n                        and folklore accordions.\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/bugari.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Armando Bugari</h4>\r\n                    <p class=\"card-text\">The Bugari Armando, proud of it's tradition, is conscious of occupying a place of importance among the various manufacturers.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Excelsior.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Excelsior</h4>\r\n                    <p class=\"card-text\">Shining like stars in the universe of sounds, EXCELSIOR accordions came to light in NY, USA in 1924.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
+module.exports = "\r\n<carousel class=\"slide\">\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_07.jpg\" alt=\"first slide\" class=\"img-fluid\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_02.jpg\" alt=\"second slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_03.jpg\" alt=\"third slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_04.jpg\" alt=\"fouth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_05-1.jpg\" alt=\"fifth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_06.jpg\" alt=\"sixth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_01.jpg\" alt=\"seventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_08.jpg\" alt=\"eight slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_09.jpg\" alt=\"ninth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_10.jpg\" alt=\"tenth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/Bara_Zmekova_koncert_Cafe_Etage_PH11706_color-1.jpg\" alt=\"eleventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n</carousel>\r\n\r\n<!-- Page Features -->\r\n<div class=\"container\">\r\n    <div class=\"row text-center\">\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/scand2.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Scandalli</h4>\r\n                    <p class=\"card-text\">The Scandalli brand is an icon for many because of its long, distinguished history of innovation, prestige and quality.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Weltmeister.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Weltmeister</h4>\r\n                    <p class=\"card-text\">\r\n                        At Weltmeister Akkordeon Manufaktur GmbH, we supply\r\n                        the music world with Weltmeister solo, button, piano\r\n                        and folklore accordions.\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/bugari.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Armando Bugari</h4>\r\n                    <p class=\"card-text\">The Bugari Armando, proud of it's tradition, is conscious of occupying a place of importance among the various manufacturers.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Excelsior.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Excelsior</h4>\r\n                    <p class=\"card-text\">Shining like stars in the universe of sounds, EXCELSIOR accordions came to light in NY, USA in 1924.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -467,7 +466,7 @@ HomeComponent = __decorate([
 /***/ "../../../../../ClientApp/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 offset-md-4\">\r\n        <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n        <form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\"  [(ngModel)]=\"creds.username\" #username=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" required #password=\"ngModel\" />\r\n                <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\"/>\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 offset-md-4\">\r\n        <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n        <form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\"  [(ngModel)]=\"creds.username\" #username=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" required #password=\"ngModel\" />\r\n                <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\"/>\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n                <a routerLink=\"/register\" class=\"btn btn-default float-right\">Register</a>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -555,7 +554,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../ClientApp/app/orderAddress/orderAddress.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>orderAddress.component</title>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n\r\n</head>\r\n<body>\r\n\r\n\r\n    <h1 class=\"text-success\">\r\n        Please pay to <span style=\"color:blue\">{{ orderAddress }}</span>    <i class=\"fa fa-btc\"></i>\r\n    </h1>\r\n\r\n    <div class=\"justify-content-center\" *ngIf=\"orderAddress\">\r\n        <qrcode [qrdata]=\"orderAddress\" [size]=\"256\" [level]=\"'M'\"></qrcode>\r\n    </div>\r\n    <div *ngIf=\"order\">\r\n\r\n        <h3>Here are details of your order: </h3>\r\n        <h6>Order Total: {{ order.orderTotalInUSD }}<i class=\"fa fa-usd\"></i></h6>\r\n\r\n        <h6>Order Total in Bitcoin: {{ order.orderTotalInBitcoin }}<i class=\"fa fa-btc\"></i></h6>\r\n\r\n        <h5>Order items: </h5>\r\n        <table class=\"table\">\r\n            <thead>\r\n                <tr>\r\n                    <th scope=\"col\">Product</th>\r\n                    <th scope=\"col\">Quantity</th>\r\n                    <th scope=\"col\">Price per Unit </th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let i of order.items\">\r\n                    <td>{{ i.product.title }}</td>\r\n                    <td>{{ i.quantity }}</td>\r\n                    <td>{{ i.unitPrice }} <i class=\"fa fa-usd\"></i></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n    <h2 class=\"text-danger\" *ngIf=\"paymentNotSatisfied\">{{ sumOfTransactions }}<i class=\"fa fa-btc\"></i> has been paid!</h2>\r\n    <h2 class=\"text-success\" *ngIf=\"paymentCorrect\">Order has been paid for!</h2>\r\n    <h4 class=\"text-success\" *ngIf=\"paymentExceeded\">You paid {{ paymentDiffBTC }}<i class=\"fa fa-btc\"></i> more!</h4>\r\n    <h4 class=\"text-info\" *ngIf=\"paymentNotSatisfied && (sumOfTransactions != 0)\">You paid {{ sumOfTransactions }}<i class=\"fa fa-btc\"></i>, to complete purchase please pay {{ order.orderTotalInBitcoin - sumOfTransactions }}<i class=\"fa fa-btc\"></i> more!</h4>\r\n\r\n    <h6 class=\"text-secondary\">Transactions for this order:</h6>\r\n    <ul id=\"messagesList\"></ul>\r\n\r\n</body>\r\n</html>"
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>orderAddress.component</title>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n\r\n</head>\r\n<body>\r\n\r\n\r\n    <h1 class=\"text-success\">\r\n        Please pay to <span style=\"color:blue\">{{ orderAddress }}</span>    <i class=\"fa fa-btc\"></i>\r\n    </h1>\r\n\r\n    <div class=\"justify-content-center\" *ngIf=\"orderAddress\">\r\n        <qrcode [qrdata]=\"orderQRInfo\" [size]=\"256\" [level]=\"'M'\"></qrcode>\r\n    </div>\r\n    <div *ngIf=\"order\">\r\n\r\n        <h3>Here are details of your order: </h3>\r\n        <h6>Order Total: {{ order.orderTotalInUSD }}<i class=\"fa fa-usd\"></i></h6>\r\n\r\n        <h6>Order Total in Bitcoin: {{ order.orderTotalInBitcoin | number:'1.1-8'}}<i class=\"fa fa-btc\"></i></h6>\r\n\r\n        <h5>Order items: </h5>\r\n        <table class=\"table\">\r\n            <thead>\r\n                <tr>\r\n                    <th scope=\"col\">Product</th>\r\n                    <th scope=\"col\">Quantity</th>\r\n                    <th scope=\"col\">Price per Unit </th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let i of order.items\">\r\n                    <td>{{ i.product.title }}</td>\r\n                    <td>{{ i.quantity }}</td>\r\n                    <td>{{ i.unitPrice }} <i class=\"fa fa-usd\"></i></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n    <h2 class=\"text-danger\" *ngIf=\"paymentNotSatisfied\">{{ sumOfTransactions }}<i class=\"fa fa-btc\"></i> has been paid!</h2>\r\n    <h2 class=\"text-success\" *ngIf=\"paymentCorrect\">Order has been paid for!</h2>\r\n    <h4 class=\"text-success\" *ngIf=\"paymentExceeded\">You paid {{ paymentDiffBTC }}<i class=\"fa fa-btc\"></i> more!</h4>\r\n    <h4 class=\"text-info\" *ngIf=\"paymentNotSatisfied && (sumOfTransactions != 0)\">You paid {{ sumOfTransactions }}<i class=\"fa fa-btc\"></i>, to complete purchase please pay {{ (order.orderTotalInBitcoin - sumOfTransactions) | number:'1.1-8'}}<i class=\"fa fa-btc\"></i> more!</h4>\r\n\r\n    <h6 class=\"text-secondary\">Transactions for this order:</h6>\r\n    <ul id=\"messagesList\"></ul>\r\n\r\n</body>\r\n</html>"
 
 /***/ }),
 
@@ -583,6 +582,7 @@ var OrderAddress = (function () {
     function OrderAddress(data) {
         this.data = data;
         this.orderAddress = "";
+        this.orderQRInfo = "";
         this.msgs = [];
         this.payments = [];
         this.sumOfTransactions = 0;
@@ -593,31 +593,22 @@ var OrderAddress = (function () {
         this.paymentNotSatisfied = true;
     }
     OrderAddress.prototype.ngOnInit = function () {
-        // console.log("ngOnInit for  OrderAddress component entered!");
         var _this = this;
         this.data.getBtcPrice()
             .subscribe(function (success) {
             if (success)
-                _this.btcPrice = _this.data.btcPrice; // string to number conversion magic
+                _this.btcPrice = _this.data.btcPrice;
         });
         this.data.getOrderAddress()
             .subscribe(function (success) {
             if (success) {
                 _this.order = _this.data.orderFromServer;
                 _this.orderAddress = _this.data.orderAddress;
-                // stavio ovdje jer ce se samo odavde samo jednom zavrtit jer ako stavim van subscribe u ngInit tad se izvrsi malo prije nego subscribe zavrsi
-                // a ruzno mi je da se izvrsava u connection funkciji svaki put kad transakcija dodje
-                console.log(_this.order);
-            }
-            else {
-                console.log("ngOnInit orderAddress, getOrderAddress is not success");
+                _this.orderQRInfo = "bitcoin:" + _this.orderAddress + "?" + "amount=" + _this.order.orderTotalInBitcoin;
+                //console.log(this.order);
+                //console.log(this.orderQRInfo);
             }
         });
-        console.log("this order after getOrderAddress" + this.order + " " + Date.now().toString());
-        //this order after getOrderAddressundefined 1532523876659 prije od
-        //                                          1532523876672 
-        // this._hubConnection = new HubConnection('http://localhost:1874/notify');
-        // user has to be authorized for this to work, probably?
         var connection = new __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr__["a" /* HubConnectionBuilder */]()
             .withUrl("http://localhost:8888/notifyHub", { accessTokenFactory: function () { return _this.data.token; } }) //JWT Bearer
             .build();
@@ -627,59 +618,27 @@ var OrderAddress = (function () {
             .catch(function (err) { return console.log('Error while establishing connection :('); });
         connection.on("ReceiveNotification", function (txId, txAmount, totalAmountOfBitcoinPayed) {
             _this.payments.push(txAmount);
-            //const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            // logiku za formiranje loga
             var txLog = txAmount + " has been received from transaction with id: " + txId;
-            // const msg = poruka;
-            // var totalPaymentsInUSD = totalAmountOfBitcoinPayed * this.order.btcPrice;
-            // var totalPriceInBTC = this.orderTotal / this.btcPrice;
-            console.log("Out of flow control \n" +
-                "orderTotalInBTC: " + _this.order.orderTotalInBitcoin + "\n" +
-                "totalAmountOfBitcoinPAyed: " + totalAmountOfBitcoinPayed + "\n" +
-                "paymentExceeded: " + _this.paymentExceeded + "\n" +
-                "paymentCorrect: " + _this.paymentCorrect + "\n" +
-                "paymentNotSatisfied: " + _this.paymentNotSatisfied);
             if (_this.order.orderTotalInBitcoin > totalAmountOfBitcoinPayed) {
                 _this.paymentExceeded = false;
                 _this.paymentCorrect = false;
                 _this.paymentNotSatisfied = true;
                 _this.paymentDiffBTC = _this.order.orderTotalInBitcoin - totalAmountOfBitcoinPayed;
-                console.log("In first if " +
-                    "orderTotalInBTC: " + _this.order.orderTotalInBitcoin +
-                    "totalAmountOfBitcoinPAyed: " + totalAmountOfBitcoinPayed +
-                    "paymentExceeded: " + _this.paymentExceeded +
-                    "paymentCorrect: " + _this.paymentCorrect +
-                    "paymentNotSatisfied: " + _this.paymentNotSatisfied);
             }
             else if (_this.order.orderTotalInBitcoin == totalAmountOfBitcoinPayed) {
                 _this.paymentExceeded = false;
                 _this.paymentCorrect = true;
                 _this.paymentNotSatisfied = false;
-                console.log("in second if " +
-                    "orderTotalInBTC: " + _this.order.orderTotalInBitcoin +
-                    "totalAmountOfBitcoinPAyed: " + totalAmountOfBitcoinPayed +
-                    "paymentExceeded: " + _this.paymentExceeded +
-                    "paymentCorrect: " + _this.paymentCorrect +
-                    "paymentNotSatisfied: " + _this.paymentNotSatisfied);
             }
             else if (_this.order.orderTotalInBitcoin <= totalAmountOfBitcoinPayed) {
-                // this.paymentCorrect = true;
                 _this.paymentExceeded = true;
                 _this.paymentCorrect = false;
                 _this.paymentNotSatisfied = false;
                 _this.paymentDiffBTC = totalAmountOfBitcoinPayed - _this.order.orderTotalInBitcoin;
-                console.log("in third if " +
-                    "orderTotalInBTC: " + _this.order.orderTotalInBitcoin +
-                    "totalAmountOfBitcoinPAyed: " + totalAmountOfBitcoinPayed +
-                    "paymentExceeded: " + _this.paymentExceeded +
-                    "paymentCorrect: " + _this.paymentCorrect +
-                    "paymentNotSatisfied: " + _this.paymentNotSatisfied);
             }
             var li = document.createElement("li");
             li.textContent = txLog;
             document.getElementById("messagesList").appendChild(li);
-            // li.innerHTML += '<i class="fa fa-btc"></i>';
-            console.log("in notify...js.connection.on() TRACING, DELETE ME!!!");
             var forEachBuffer = 0;
             if (_this.payments.length > 0) {
                 _this.payments.forEach(function (amount) {
@@ -708,7 +667,7 @@ var _a;
 /***/ "../../../../../ClientApp/app/orders/orders.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<head>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n</head>\r\n<h1 class=\"text-center\">All the orders:</h1>\r\n<h4 class=\"text-center\" *ngIf=\"data.ordersByUser.length > 0\"> # of orders: {{ orders.length }}</h4>\r\n<div *ngIf=\"data.ordersByUser.length > 0\">\r\n\r\n    <div *ngFor=\"let o of orders\">\r\n\r\n            <h5>Order {{ o.orderNumber}} Info</h5>\r\n            <h6>Name: {{ o.user.firstName }}  {{o.user.lastName}}</h6>\r\n            <h6>Email: {{ o.user.email }}</h6>\r\n\r\n            <h6 class=\"\">Bitcoin Address: {{ o.bitcoinAddress }}</h6>\r\n            <!--<h6 class=\"\">Required Value: {{ o.requiredValue}}</h6>-->\r\n            <h6 class=\"\">Received Value for order : {{ o.receivedValue }} <i class=\"fa fa-btc\"></i></h6>\r\n            <h6 class=\"\">More than necessary has been paid: {{ o.moreThanNecessary }}</h6>\r\n            <h6 class=\"\">Payment is valid: {{ o.orderPaymentValid }}</h6>\r\n            <h6 class=\"\">Time of the order: {{ o.orderDate | date: 'medium' }}</h6>\r\n            <!--<h6 class=\"\">Order transactions confirmed: {{ o.orderTransactionsConfirmed }}</h6>-->\r\n            <br />\r\n\r\n            <h5>Order items: </h5>\r\n            <table class=\"table\">\r\n                <thead>\r\n                    <tr>\r\n                        <th scope=\"col\">Product</th>\r\n                        <th scope=\"col\">Quantity</th>\r\n                        <th scope=\"col\">Price per Unit </th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let i of o.items\">\r\n                        <td>{{ i.product.title }}</td>\r\n                        <td>{{ i.quantity }}</td>\r\n                        <td>{{ i.unitPrice }} <i class=\"fa fa-usd\"></i></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n\r\n            <!--TOTAL!!!-->\r\n            <div *ngIf=\"o.transactions.length > 0\">\r\n                <h5>Order Transactions: </h5>\r\n                <table class=\"table\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>Transaction Id</th>\r\n                            <th>Transaction Amount <i class=\"fa fa-btc\"></i></th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let t of o.transactions\">\r\n                            <td>{{ t.transactionId }}</td>\r\n                            <td>{{ t.amount }} <i class=\"fa fa-btc\"></i></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td></td>\r\n                            <td><strong>Total: {{ o.receivedValue }} <i class=\"fa fa-btc\"></i></strong></td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <br /><br /><br />\r\n    </div>\r\n</div>"
+module.exports = "<head>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n</head>\r\n<h1 class=\"text-center\">All the orders:</h1>\r\n<h4 class=\"text-center\" *ngIf=\"data.ordersByUser.length > 0\"> # of orders: {{ orders.length }}</h4>\r\n<div *ngIf=\"data.ordersByUser.length > 0\">\r\n\r\n    <div *ngFor=\"let o of orders\">\r\n\r\n            <h5>Order {{ o.orderNumber}} Info</h5>\r\n            <h6>Name: {{ o.user.firstName }}  {{o.user.lastName}}</h6>\r\n            <h6>Email: {{ o.user.email }}</h6>\r\n\r\n            <h6 class=\"\">Bitcoin Address: {{ o.bitcoinAddress }}</h6>\r\n            <h6 class=\"\">Received Value for order : {{ o.receivedValue }} <i class=\"fa fa-btc\"></i></h6>\r\n            <h6 class=\"\">More than necessary has been paid: {{ o.moreThanNecessary }}</h6>\r\n            <h6 class=\"\">Payment is valid: {{ o.orderPaymentValid }}</h6>\r\n            <h6 class=\"\">Time of the order: {{ o.orderDate | date: 'medium' }}</h6>\r\n            <br />\r\n\r\n            <h5>Order items: </h5>\r\n            <table class=\"table\">\r\n                <thead>\r\n                    <tr>\r\n                        <th scope=\"col\">Product</th>\r\n                        <th scope=\"col\">Quantity</th>\r\n                        <th scope=\"col\">Price per Unit </th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let i of o.items\">\r\n                        <td>{{ i.product.title }}</td>\r\n                        <td>{{ i.quantity }}</td>\r\n                        <td>{{ i.unitPrice }} <i class=\"fa fa-usd\"></i></td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n\r\n\r\n            <!--TOTAL!!!-->\r\n            <div *ngIf=\"o.transactions.length > 0\">\r\n                <h5>Order Transactions: </h5>\r\n                <table class=\"table\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th>Transaction Id</th>\r\n                            <th>Transaction Amount <i class=\"fa fa-btc\"></i></th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let t of o.transactions\">\r\n                            <td>{{ t.transactionId }}</td>\r\n                            <td>{{ t.amount }} <i class=\"fa fa-btc\"></i></td>\r\n                        </tr>\r\n                        <tr>\r\n                            <td></td>\r\n                            <td><strong>Total: {{ o.receivedValue }} <i class=\"fa fa-btc\"></i></strong></td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n            <br /><br /><br />\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -862,7 +821,6 @@ var RegisterComponent = (function () {
         this.data.register(this.userInfo)
             .subscribe(function (success) {
             // handle the success : )
-            // maybe a success component that offers to navigate to shop or to home page
             _this.router.navigate(['register-success']);
         }, function (err) { return _this.errorMessage = "Failed to login"; });
     };
@@ -910,9 +868,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
-        this.token = ""; //should be private
+        this.token = "";
         this.ordersByUser = [];
-        this.order = new __WEBPACK_IMPORTED_MODULE_3__order__["a" /* Order */](); // this order is created in ng and sent to server
+        this.order = new __WEBPACK_IMPORTED_MODULE_3__order__["a" /* Order */]();
         this.orderAddress = "";
         this.ordersRequested = false;
         this.btcPrice = 0;
@@ -935,8 +893,6 @@ var DataService = (function () {
         })
             .map(function (data) {
             _this.ordersByUser = data;
-            console.log("mapped data from api/orders");
-            console.log(_this.ordersByUser);
             return true;
         });
     };
@@ -948,24 +904,18 @@ var DataService = (function () {
             headers: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]().set("Authorization", "Bearer " + this.token)
         })
             .map(function (response) {
-            // this.order = new Order();  // maybe an old order will stay if new Order() is removed
-            // need to get orderAddress from server
             return true;
         });
     };
     DataService.prototype.getOrderAddress = function () {
-        // console.log("this is orderNumber " + this.order.orderNumber);
         var _this = this;
         var url = "/api/OrderAddress/" + this.order.orderNumber;
         return this.http
             .get(url)
             .map(function (data) {
             _this.orderFromServer = data;
-            _this.orderAddress = data.bitcoinAddress; // jednoo maket
+            _this.orderAddress = data.bitcoinAddress;
             _this.order.orderAddress = data.bitcoinAddress;
-            // ugly but works, SETTING TOTALS HERE
-            _this.order.orderTotalInBitcoin = data.OrderTotalInBTC;
-            _this.order.orderTotalInUSD = data.OrderTotalInUSD;
             return true;
         });
     };
@@ -990,17 +940,16 @@ var DataService = (function () {
         return this.http
             .post("/account/register", userInfo)
             .map(function (data) {
-            // maybe some success or error message?
             return true;
         });
     };
     DataService.prototype.getBtcPrice = function () {
         var _this = this;
         return this.http
-            .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+            .get("https://blockchain.info/ticker")
             .map(function (data) {
-            _this.btcPrice = data.bpi.USD.rate;
-            //this.btcPrice = this.btcPrice.substring(0, this.btcPrice.length - 2);
+            // this.btcPrice = data.bpi.USD.rate;
+            _this.btcPrice = data.USD.sell;
             _this.order.btcPrice = _this.btcPrice;
             return true;
         });
@@ -1022,27 +971,6 @@ var DataService = (function () {
             item.productCassoto = newProduct.cassoto;
             item.productRegisters = newProduct.registers;
             item.productWeight = newProduct.weight;
-            //item = new OrderItem();
-            //item.productId = newProduct.id;
-            //item.productArtist = newProduct.artist;
-            //item.productArtId = newProduct.artId;
-            //item.productCategory = newProduct.category;
-            //item.productSize = newProduct.size;
-            //item.productTitle = newProduct.title;
-            //item.unitPrice = newProduct.price;
-            //item.quantity = 1;
-            //id: number;
-            //category: string;
-            //size: string;
-            //price: number;
-            //title: string;
-            //keys: number;
-            //reeds: string;
-            //registers: string;
-            //basses: number;
-            //weight: string;
-            //cassoto: boolean;
-            //artId: string;
             this.order.items.push(item);
         }
     };
@@ -1076,7 +1004,6 @@ var Order = (function () {
         get: function () {
             var sub = __WEBPACK_IMPORTED_MODULE_0_lodash__["sum"](__WEBPACK_IMPORTED_MODULE_0_lodash__["map"](this.items, function (i) { return i.unitPrice * i.quantity; }));
             return sub;
-            // racunat subtotal na licu mjesta jbg lol izbrisat ovo
         },
         enumerable: true,
         configurable: true
@@ -1091,20 +1018,6 @@ var OrderItem = (function () {
     return OrderItem;
 }());
 
-//public int Id { get; set; }
-// [Required]
-// public int Quantity { get; set; }
-// [Required]
-// public decimal UnitPrice { get; set; }
-// [Required]
-// public int ProductId { get; set; }
-// public string ProductCategory { get; set; }
-// public string ProductSize { get; set; }
-// public string ProductTitle { get; set; }
-// public string ProductRegisters { get; set; }
-// public string ProductWeight { get; set; }
-// public bool ProductCassoto { get; set; }
-// public string ProductArtId { get; set; }
 //# sourceMappingURL=order.js.map
 
 /***/ }),
@@ -1188,7 +1101,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../ClientApp/app/shop/productList.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <!-- Page Heading -->\r\n    <h1 class=\"my-4\">\r\n        Worldwide Brands\r\n        <small>Bitcoin Accepted</small>\r\n    </h1>\r\n\r\n    <!-- Project One -->\r\n    <div class=\"row\" *ngFor=\"let p of products\">\r\n        <div class=\"col-md-7\">\r\n            <a (click)=\"addProduct(p)\">\r\n                <img src=\"/img/productImg/{{p.artId}}.jpg\" class=\"img-fluid\" alt=\"{{ p.title}}\" />\r\n            </a>\r\n        </div>\r\n        <div class=\"col-md-5\">\r\n            <div class=\"product-name\"><strong>{{p.title}}</strong></div>\r\n            <br />\r\n            <div><strong>Price: </strong>{{ p.price | currency:\"USD\":true}}</div>\r\n            <div><strong>Size: </strong> {{ p.size }}</div>\r\n            <div><strong>Keys: </strong> {{ p.keys }}</div>\r\n            <div><strong>Reeds: </strong> {{ p.reeds }}</div>\r\n            <div><strong>Registers: </strong> {{ p.registers }}</div>\r\n            <div><strong>Basses: </strong> {{ p.basses }}</div>\r\n            <div><strong>Weight: </strong> {{ p.weight }}</div>\r\n            <div><strong>Cassoto: </strong> {{ p.cassoto }}</div>\r\n\r\n\r\n            <button id=\"buyButton\" class=\"btn text-light bg-dark btn-lg float-right\" (click)=\"addProduct(p)\">Add To Cart</button>\r\n        </div>\r\n    </div>\r\n    <!-- /.row -->\r\n\r\n    <!--<div class=\"card bg-faded col-md-4\" *ngFor=\"let p of products\">\r\n        <div class=\"card-block\">\r\n            <img src=\"/img/productImg/{{p.artId}}.jpg\" class=\"img-fluid\" alt=\"{{ p.title}}\" />\r\n            <div class=\"product-name\">{{ p.category}} - {{p.size}}</div>\r\n            <div><strong>Price: </strong>{{ p.price | currency:\"USD\":true}}</div>\r\n            <div><strong>Title: </strong> {{ p.title }}</div>\r\n            <button id=\"buyButton\" class=\"btn btn-success btn-sm float-right\" (click)=\"addProduct(p)\">Buy</button>\r\n        </div>\r\n    </div>-->\r\n\r\n\r\n</div>"
+module.exports = "<div class=\"container\">\r\n\r\n    <!-- Page Heading -->\r\n    <h1 class=\"my-4\">\r\n        Worldwide Brands\r\n        <small>Bitcoin Accepted</small>\r\n    </h1>\r\n\r\n    <!-- Project One -->\r\n    <div class=\"row\" *ngFor=\"let p of products\">\r\n        <div class=\"col-md-7\">\r\n            <a (click)=\"addProduct(p)\">\r\n                <img src=\"/img/productImg/{{p.artId}}.jpg\" class=\"img-fluid\" alt=\"{{ p.title}}\" />\r\n            </a>\r\n        </div>\r\n        <div class=\"col-md-5\">\r\n            <div class=\"product-name\"><strong>{{p.title}}</strong></div>\r\n            <br />\r\n            <div><strong>Price: </strong>{{ p.price | currency:\"USD\":true}}</div>\r\n            <div><strong>Size: </strong> {{ p.size }}</div>\r\n            <div><strong>Keys: </strong> {{ p.keys }}</div>\r\n            <div><strong>Reeds: </strong> {{ p.reeds }}</div>\r\n            <div><strong>Registers: </strong> {{ p.registers }}</div>\r\n            <div><strong>Basses: </strong> {{ p.basses }}</div>\r\n            <div><strong>Weight: </strong> {{ p.weight }}</div>\r\n            <div><strong>Cassoto: </strong> {{ p.cassoto }}</div>\r\n\r\n\r\n            <button id=\"buyButton\" class=\"btn text-light bg-dark btn-lg float-right\" (click)=\"addProduct(p)\">Add To Cart</button>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 

@@ -12,12 +12,10 @@
             <h6>Email: {{ o.user.email }}</h6>
 
             <h6 class="">Bitcoin Address: {{ o.bitcoinAddress }}</h6>
-            <!--<h6 class="">Required Value: {{ o.requiredValue}}</h6>-->
             <h6 class="">Received Value for order : {{ o.receivedValue }} <i class="fa fa-btc"></i></h6>
             <h6 class="">More than necessary has been paid: {{ o.moreThanNecessary }}</h6>
             <h6 class="">Payment is valid: {{ o.orderPaymentValid }}</h6>
             <h6 class="">Time of the order: {{ o.orderDate | date: 'medium' }}</h6>
-            <!--<h6 class="">Order transactions confirmed: {{ o.orderTransactionsConfirmed }}</h6>-->
             <br />
 
             <h5>Order items: </h5>

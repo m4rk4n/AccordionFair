@@ -7,6 +7,7 @@ import { FormsModule } from "@angular/forms";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DecimalPipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ProductList } from "./shop/productList.component";

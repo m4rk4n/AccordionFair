@@ -12,7 +12,7 @@ import { Product } from "../shared/product";
 
 export class ProductList implements OnInit{
 
-    constructor(private data: DataService){ //data is now member of the class
+    constructor(private data: DataService){ 
     }
 
     public products: Product[] = [];

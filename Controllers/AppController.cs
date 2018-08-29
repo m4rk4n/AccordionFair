@@ -22,7 +22,6 @@ namespace AccordionFair.Controllers
 
         public IActionResult Index()
         {
-          //  throw new InvalidOperationException("Bad things happened"); :))
             return View();
         }
 
@@ -39,7 +38,6 @@ namespace AccordionFair.Controllers
         {
             if(ModelState.IsValid)
             {
-                // send the mail
                 ViewBag.UserMessage = "Mail Sent";
                 ModelState.Clear();
                 return View();
@@ -47,7 +45,6 @@ namespace AccordionFair.Controllers
             else
             {
                 return View();
-                // show the errors
             }
             
         }
@@ -62,18 +59,6 @@ namespace AccordionFair.Controllers
         //[Authorize]
         public IActionResult Shop()
         {
-            //var results = repository.GetAllProducts()
-            //                .OrderBy(p => p.Category)
-            //                .ToList();
-            //From p in _ctx.Products
-            //orderby p.Category
-            //select p
-
-            //if(!User.Identity.IsAuthenticated)
-            //{
-            //    return RedirectToAction("Login", "Account");
-            //}
-
             return View();
         }
     }

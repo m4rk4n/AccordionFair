@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
         this.data.register(this.userInfo)
             .subscribe(success => {
                // handle the success : )
-                // maybe a success component that offers to navigate to shop or to home page
                 this.router.navigate(['register-success']);
                 
             }, err => this.errorMessage = "Failed to login")

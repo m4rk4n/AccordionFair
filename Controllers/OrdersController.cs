@@ -29,47 +29,35 @@ namespace AccordionFair.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<StoreUser> userManager;
         private readonly IHubContext<NotifyHub> hub;
-        private readonly RoleManager<IdentityRole> roleManager;
 
         public OrdersController(IAccordionRepository repo, 
             ILogger<OrdersController> logger,
             IMapper mapper,
             UserManager<StoreUser> userManager,
-            IHubContext<NotifyHub> hub,
-            RoleManager<IdentityRole> roleManager)
+            IHubContext<NotifyHub> hub)
         {
             this.repo = repo;
             this.logger = logger;
             this.mapper = mapper;
             this.userManager = userManager;
             this.hub = hub;
-            this.roleManager = roleManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            // var order = repo.GetOrderById(User.Identity.Name, orderId);
             var user2 = User.Identity.Name;
             var user = await userManager.FindByNameAsync(User.Identity.Name);
-            // var user = await userManager.GetUserAsync(HttpContext.User);
+
             
 
             var roles = await userManager.GetRolesAsync(user);
             if (roles.Contains("Admin")) // if user is admin, return all orders
             {
-                // vrati sve ordere, bolji handler nedaj boze belaja
                 var orders = repo.GetAllOrders();
 
                 if (orders.Any())
                 {
-                    // kod pisanja koda fora je da cu jednom svoj fokus posvetit odredjenoj metodi i problemu
-                    // s obzirom na to bolje je napisat kod tako da, ako u buducnosti se nesto lose desi 
-                    // moj kod odmah uputi na moguci problem, ili na to da s njim nema problema
-
-                    // nemoj bit lijen, take your time, pisi kod defenzivno
-                    //  mozda je jos rano od mene ocekivat takav kod, ali bih sigurno trebao krenut mislit u tom smijeru
-
                     logger.LogInformation("Returned all orders for admin account"); 
                     return Ok(orders);
                 }
@@ -95,26 +83,6 @@ namespace AccordionFair.Controllers
                 }
             }
         }
-
-
-        //[HttpGet]
-        //public IActionResult Get(bool includeItems = true)
-        //{
-        //    try
-        //    {
-        //        var username = User.Identity.Name;
-
-        //        //var results = repo.GetAllOrders(includeItems);
-        //        var results = repo.GetAllOrdersByUser(username, includeItems);
-
-        //        return Ok(mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(results));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        logger.LogError($"Failed to get orders: {ex}");
-        //        return BadRequest("Failed to get orders");
-        //    }
-        //}
 
         [HttpGet("{id:int}")]
         public IActionResult Get(int id)
@@ -152,7 +120,6 @@ namespace AccordionFair.Controllers
                     var currentUser = await userManager.FindByNameAsync(User.Identity.Name);
                     newOrder.User = currentUser;
 
-                    // if (newOrder.BitcoinPrice != model.BtcPrice || newOrder.BitcoinPrice == 0)
                     if (newOrder.BitcoinPrice == 0)
                     {
                         logger.LogError($"BtcPrice is not correctly set modelPrice: {model.BtcPrice} newOrderPrice: {newOrder.BitcoinPrice}");
@@ -162,25 +129,19 @@ namespace AccordionFair.Controllers
 
                     var subtotal = newOrder.Items.Sum(i => i.Quantity * i.UnitPrice);
                     newOrder.OrderTotalInUSD = subtotal;
-                    newOrder.OrderTotalInBitcoin = subtotal / newOrder.BitcoinPrice;
-                    //=================================================================================================================
+                    newOrder.OrderTotalInBitcoin = Math.Round(subtotal / newOrder.BitcoinPrice, 8);
+
                     RPCCredentialString cred = new RPCCredentialString();
-                    cred.UserPassword = new NetworkCredential("marko", "nekadugasifra");
+                    cred.UserPassword = new NetworkCredential("marko", "nekadugasifra"); // add to config
                     RPCClient client = new RPCClient(cred, Network.TestNet);
+
                     var address = await client.GetNewAddressAsync();
                     newOrder.BitcoinAddress = address.ToString();
-                    //=================================================================================================================
 
                     repo.AddOrder(newOrder);
                     if (repo.SaveAll())
                     {
-                        // kad udje, nece imat id, al ce mu kontext dodjelit id nakon Add()
                          return Created($"/api/orders/{newOrder.Id}", mapper.Map<Order, OrderViewModel>(newOrder)); // HTTP response 201 when you create a new object
-                        
-
-                        // I get nullreferenceEx  za BitcoinAddress in SHowOrderAddress.cshtml
-                       // return RedirectToAction("ShowOrderAddress", "OrderAddress", newOrder.OrderNumber);
-                        // redirect to action order address page, 
                     }
                 }
                 else

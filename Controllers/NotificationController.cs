@@ -11,33 +11,25 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace AccordionFair.Controllers
 {
 
     [Route("api/[Controller]")]
-    // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    // razmislit jel ovde potrebna autorizacija
     public class NotificationController
     {
-        private readonly double btcPrice = 8005.99;
         private readonly ILogger<NotificationController> logger;
         private readonly IAccordionRepository repo;
         private readonly IHubContext<NotifyHub> hub;
-        private readonly SignInManager<StoreUser> signInManager;
-        private readonly UserManager<StoreUser> userManager;
 
         public NotificationController(IAccordionRepository repo, 
                                         IHubContext<NotifyHub> hub, 
-                                        ILogger<NotificationController> logger, 
-                                        SignInManager<StoreUser> signInManager, 
-                                        UserManager<StoreUser> userManager)
+                                        ILogger<NotificationController> logger)
         {
             this.logger = logger;
             this.repo = repo;
             this.hub = hub;
-            this.signInManager = signInManager;
-            this.userManager = userManager;
         }
 
         [HttpGet("{id}")]
@@ -47,99 +39,81 @@ namespace AccordionFair.Controllers
             cred.UserPassword = new NetworkCredential("marko", "nekadugasifra");
             RPCClient client = new RPCClient(cred, Network.TestNet);
 
-            // handleat slucaj kad je primljena transakcija, a nema socketa
-            // var tx =  await client.GetRawMempoolAsync();
+          
             var transaction = await client.GetRawTransactionAsync(uint256.Parse(id), false);
 
-            // potreban mi je elegantniji nacin za dohvatit adresu
-            var adres = transaction.Outputs[0].ScriptPubKey.GetDestinationAddress(Network.TestNet); //  da ne ostane null nedaj boze
-            foreach (var output in transaction.Outputs)
+            Order order = null;
+            BitcoinAddress orderAddress = null;
+            foreach (var output in transaction.Outputs) // looping through tx outputs and searching for address that has an order
             {
-                if (output.ScriptPubKey.GetDestinationAddress(Network.TestNet).ToString().StartsWith("2"))
+                order = repo.GetOrderByBitcoinAddress(output.ScriptPubKey.GetDestinationAddress(Network.TestNet).ToString());
+                
+                if (order != null)
                 {
-                    adres = output.ScriptPubKey.GetDestinationAddress(Network.TestNet);
+                    logger.LogInformation("Found order for received transaction. " + System.DateTime.Now);
+                    orderAddress = output.ScriptPubKey.GetDestinationAddress(Network.TestNet);
+                    break;
                 }
             }
 
-            // dohvatiti order za dobivenu adresu transakcije
-            
-            var order = repo.GetOrderByBitcoinAddress(adres.ToString());
-            if  (order == null)
+            if (order == null) 
             {
-                // nema ordera s adresom na koju je dosla transakcija
-                return; 
+                logger.LogInformation($"Could not find order for received transaction. " + System.DateTime.Now);
+                return;
             }
 
-
-            // vidjeti jel transakcija dodana u order, ako je, izac ili nesto, ako nije dodat i propagirat
             if (order.Transactions  !=  null)
-            foreach(var tx in order.Transactions.ToList())
             {
-                if(tx.TransactionId == id) // ta transakcija vec spremljena
+                foreach(var tx in order.Transactions.ToList())
                 {
-                    return ; 
+                    if(tx.TransactionId == id)
+                    {
+                        logger.LogInformation("That transaction hass been added to order already. " + System.DateTime.Now);
+                        return; 
+                    }
                 }
             }
             else
             {
                 order.Transactions = new List<OrderTransaction>();
             }
-
+                
             var subtotal = order.Items.Sum(i => i.Quantity * i.UnitPrice);
-
-            var totrecbyadr = await client.GetReceivedByAddressAsync(adres, 0);
+            var totrecbyadr = await client.GetReceivedByAddressAsync(orderAddress, 0); // 0 confirmations
             var totalReceivedFromAddress = (double)totrecbyadr.ToDecimal(MoneyUnit.BTC);
-            var receivedInThisTransaction = totalReceivedFromAddress - order.ReceivedValue;
+            var receivedInThisTransaction = Math.Round(totalReceivedFromAddress - order.ReceivedValue, 8);
             order.ReceivedValue = totalReceivedFromAddress;
             order.Transactions.Add(
                 new OrderTransaction
                 {
-                    // nadam se da ce OrderId bit postavljen automatski - i hoce
-                    // neki bezze komentar, cisto da vidimo kako git radi
                     TransactionId = id,
                     Amount = receivedInThisTransaction
                 });
+            logger.LogInformation("transaction for order has been added. " + System.DateTime.Now);
 
-            double paymentDifference = 0;
-            string message = "";
-            if (totalReceivedFromAddress * btcPrice == subtotal)
+            if (totalReceivedFromAddress * order.BitcoinPrice == subtotal)
             {
                 order.OrderPaymentValid = true;
             }
-            else if (totalReceivedFromAddress  * btcPrice > subtotal)
+            else if (totalReceivedFromAddress  * order.BitcoinPrice > subtotal)
             {
-                paymentDifference = (order.ReceivedValue * btcPrice - subtotal)/btcPrice;
-                order.OrderPaymentValid = true; // na klijentu different logic, ovde true ima smisla zbog servisa jednom dnevno
+                order.OrderPaymentValid = true;
                 order.MoreThanNecessary = true;
             }
-            else
-            {
-                message += $"Transaction received, you need to pay {(subtotal - order.ReceivedValue * btcPrice)/btcPrice} more to satisfy the order.";
-            }
-                // repo.update() 
-                // update ni ne treba, sam ga attachment tracker skonta da je changed i spremi nove vrijednosti u bazu
 
-                var receivedAmountToUSD = receivedInThisTransaction * btcPrice;
+            var receivedAmountToUSD = receivedInThisTransaction * order.BitcoinPrice;
 
             if (receivedAmountToUSD >= subtotal)
-                order.OrderPaymentValid = true; // mozda jos neke logike ako je vece od receivedValue
+                order.OrderPaymentValid = true;
 
             if (receivedAmountToUSD > subtotal)
                 order.MoreThanNecessary = true;
 
             if (!repo.SaveAll()) // saveChanges is zero, save all didnt save anything
             {
-                logger.LogError("Nothing has been saved");
+                logger.LogError("Nothing has been saved " + System.DateTime.Now);
             }
-            logger.LogInformation($"Transaction with ID: {id} was called for address {adres.ToString()} with {receivedInThisTransaction} btc");
-
-            var txLog = $"{receivedInThisTransaction.ToString("F8") } has been received";
-
-            // await hub.Clients.Group(User.Identity.Name).SendAsync("ReceiveNotification", poruka); // uvijek preostaj clients.All
-           // userManager.Users.FirstOrDefault(u => u.Id == order.User.Id);
-           // skontat sta cu za vise korisnika istovremeno, napravit grupe...
-           // txid, txamount, totalamountpayed
-          //  await hub.Clients.All.SendAsync("ReceiveNotification", id, receivedInThisTransaction, totalReceivedFromAddress); // uvijek preostaj clients.All
+            logger.LogInformation($"Transaction with ID: {id} was called for address {orderAddress.ToString()} with {receivedInThisTransaction} btc");
 
             await hub.Clients.Group(order.User.UserName).SendAsync("ReceiveNotification", id, receivedInThisTransaction, totalReceivedFromAddress);
         }

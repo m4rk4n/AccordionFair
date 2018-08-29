@@ -19,7 +19,6 @@ export class Checkout {
         this.data.checkout()
             .subscribe(success => {
                 if (success) {
-                    //this.router.navigate(["/"]);      // .then(result => { window.location.href = 'http://www.cnn.com/'; }); // navigate to address ordeer page :))))))))))))))))
                      this.router.navigate(["order-address"])
                 }
             }, err => this.errorMessage = "Failed to save order");
