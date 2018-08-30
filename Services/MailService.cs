@@ -14,7 +14,6 @@ namespace AccordionFair.Services
 {
     public class MailService : IMailService
     {
-
         private readonly ILogger<MailService> logger;
         private readonly EmailSettings emailSettings;
 
@@ -38,11 +37,9 @@ namespace AccordionFair.Services
                     From = new MailAddress(emailSettings.UsernameEmail, "Accordion Fair")
                 };
                 mail.To.Add(new MailAddress(to));
-                //mail.CC.Add(new MailAddress(emailSettings.CcEmail));
 
                 mail.Subject = subject;
                 mail.Body = message;
-                // mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
 
                 using (SmtpClient smtp = new SmtpClient(emailSettings.PrimaryDomain, emailSettings.PrimaryPort))

@@ -8,14 +8,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NBitcoin;
 using NBitcoin.RPC;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AccordionFair.Controllers
@@ -29,28 +28,27 @@ namespace AccordionFair.Controllers
         private readonly IMapper mapper;
         private readonly UserManager<StoreUser> userManager;
         private readonly IHubContext<NotifyHub> hub;
+        private readonly IConfiguration config;
 
         public OrdersController(IAccordionRepository repo, 
             ILogger<OrdersController> logger,
             IMapper mapper,
             UserManager<StoreUser> userManager,
-            IHubContext<NotifyHub> hub)
+            IHubContext<NotifyHub> hub,
+            IConfiguration config)
         {
             this.repo = repo;
             this.logger = logger;
             this.mapper = mapper;
             this.userManager = userManager;
             this.hub = hub;
+            this.config = config;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var user2 = User.Identity.Name;
-            var user = await userManager.FindByNameAsync(User.Identity.Name);
-
-            
-
+            var user = await userManager.FindByNameAsync(User.Identity.Name);            
             var roles = await userManager.GetRolesAsync(user);
             if (roles.Contains("Admin")) // if user is admin, return all orders
             {
@@ -132,7 +130,7 @@ namespace AccordionFair.Controllers
                     newOrder.OrderTotalInBitcoin = Math.Round(subtotal / newOrder.BitcoinPrice, 8);
 
                     RPCCredentialString cred = new RPCCredentialString();
-                    cred.UserPassword = new NetworkCredential("marko", "nekadugasifra"); // add to config
+                    cred.UserPassword = new NetworkCredential(config["NodeCredentials:RPCUser"], config["NodeCredentials:RPCPassword"]);
                     RPCClient client = new RPCClient(cred, Network.TestNet);
 
                     var address = await client.GetNewAddressAsync();
@@ -141,7 +139,7 @@ namespace AccordionFair.Controllers
                     repo.AddOrder(newOrder);
                     if (repo.SaveAll())
                     {
-                         return Created($"/api/orders/{newOrder.Id}", mapper.Map<Order, OrderViewModel>(newOrder)); // HTTP response 201 when you create a new object
+                         return Created($"/api/orders/{newOrder.Id}", mapper.Map<Order, OrderViewModel>(newOrder)); 
                     }
                 }
                 else

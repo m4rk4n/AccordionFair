@@ -28,5 +28,10 @@
     "FromEmail": "fromEmail",
     "ToEmail": "toEmail",
     "CcEmail": "ccEmail"
+  },
+
+  "NodeCredentials": {
+    "RPCUser": "marko",
+    "RPCPassword": "nekadugasifra"
   }
 }

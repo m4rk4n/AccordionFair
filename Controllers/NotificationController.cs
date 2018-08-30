@@ -10,8 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using System;
+using Microsoft.Extensions.Configuration;
 
 namespace AccordionFair.Controllers
 {
@@ -20,14 +20,17 @@ namespace AccordionFair.Controllers
     public class NotificationController
     {
         private readonly ILogger<NotificationController> logger;
+        private readonly IConfiguration config;
         private readonly IAccordionRepository repo;
         private readonly IHubContext<NotifyHub> hub;
 
         public NotificationController(IAccordionRepository repo, 
                                         IHubContext<NotifyHub> hub, 
-                                        ILogger<NotificationController> logger)
+                                        ILogger<NotificationController> logger,
+                                        IConfiguration config)
         {
             this.logger = logger;
+            this.config = config;
             this.repo = repo;
             this.hub = hub;
         }
@@ -36,7 +39,7 @@ namespace AccordionFair.Controllers
         public async Task GetAsync(string id) //id is txid
         {
             RPCCredentialString cred = new RPCCredentialString();
-            cred.UserPassword = new NetworkCredential("marko", "nekadugasifra");
+            cred.UserPassword = new NetworkCredential(config["NodeCredentials:RPCUser"], config["NodeCredentials:RPCPassword"]);
             RPCClient client = new RPCClient(cred, Network.TestNet);
 
           
