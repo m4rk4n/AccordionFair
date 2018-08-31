@@ -17,7 +17,6 @@ import { Checkout } from "./checkout/checkout.component";
 import { Login } from "./login/login.component";
 import { OrderAddress } from "./orderAddress/orderAddress.component"
 import { DataService } from "./shared/dataService";
-import { Admin } from './admin/admin.component';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
@@ -26,15 +25,6 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterSuccessComponent } from './register/register-success/register-success.component';
 
 
-
-//let routes = [
-//    { path: "", component: Shop },
-//    { path: "checkout", component: Checkout },
-//    { path: "login", component: Login },
-//    { path: "order-address", component: OrderAddress },
-//    { path: "admin", component: Admin },
-//    { path: "orders", component: OrdersComponent }
-//];
 
 let routes = [
     { path: "", component: HomeComponent },
@@ -46,7 +36,6 @@ let routes = [
     { path: "checkout", component: Checkout },
     { path: "login", component: Login },
     { path: "order-address", component: OrderAddress },
-    { path: "admin", component: Admin },
     { path: "orders", component: OrdersComponent }
 ];
 
@@ -63,7 +52,6 @@ let routes = [
       Checkout,
       Login, 
       OrderAddress,
-      Admin,
       OrdersComponent,
       RegisterSuccessComponent
   ],
@@ -74,12 +62,12 @@ let routes = [
       QRCodeModule,
       RouterModule.forRoot(routes, {
           useHash: true,
-          enableTracing: false //for Debugging of the Routes
+          enableTracing: false 
       }),
       AngularFontAwesomeModule,
       CarouselModule.forRoot()
   ],
-    providers: [ // makes it able to inject into components, singleton?
+    providers: [ 
         DataService
     ],
   bootstrap: [AppComponent]

@@ -34,7 +34,6 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getAllOrders = function () {
         var _this = this;
-        console.log("in getAllOrders");
         return this.http.get("/api/orders", {
             headers: new http_1.HttpHeaders()
                 .set("Authorization", "Bearer " + this.token)
@@ -57,9 +56,11 @@ var DataService = /** @class */ (function () {
     };
     DataService.prototype.getOrderAddress = function () {
         var _this = this;
-        var url = "/api/OrderAddress/" + this.order.orderNumber;
+        var url = "/api/orders/" + this.order.orderNumber;
         return this.http
-            .get(url)
+            .get(url, {
+            headers: new http_1.HttpHeaders().set("Authorization", "Bearer " + this.token)
+        })
             .map(function (data) {
             _this.orderFromServer = data;
             _this.orderAddress = data.bitcoinAddress;

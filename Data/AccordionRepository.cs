@@ -127,9 +127,9 @@ namespace AccordionFair.Data
         public Order GetOrderById(int id)
         {
             return ctx.Orders
+               .Where(o => o.Id == id)
                .Include(o => o.Items)
                .ThenInclude(i => i.Product)
-               .Where(o => o.Id == id)
                .FirstOrDefault();
         }
 

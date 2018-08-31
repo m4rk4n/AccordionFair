@@ -14,7 +14,6 @@ export class AppComponent {
         this.data.getBtcPrice()
             .subscribe(success => {
                 if (success) {
-                   // this.btcPrice = this.data.btcPrice;
                     this.btcPrice = this.data.btcPrice.toFixed(2);
                 }
             });

@@ -17,7 +17,6 @@ export class OrdersComponent implements OnInit {
 
     ngOnInit() { 
         if (this.data.loginRequired) {
-            console.log("rerouted to login from orders.component");
             this.data.ordersRequested = true;
             this.router.navigate(["login"]);
         }
@@ -26,12 +25,10 @@ export class OrdersComponent implements OnInit {
             .subscribe(success => {
                 if (success) {
                     this.orders = this.data.ordersByUser;
-                    console.log("ordersByUser set");
                 }
             });
 
         if (this.data.ordersByUser.length > 0) {
-            console.log("ordersSet flag set");
             this.ordersSet = true;
         }
   }

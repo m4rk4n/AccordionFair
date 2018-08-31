@@ -53,74 +53,6 @@ AboutComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../ClientApp/app/admin/admin.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h1>All the orders:</h1>\r\n<h4 *ngIf=\"data.adminOrders.length > 0\"> # of orders: {{ orders.length }}</h4>\r\n<div  *ngIf=\"data.adminOrders.length > 0\">\r\n\r\n    <div class=\"row\" *ngFor=\"let o of orders\">\r\n\r\n            <h6>Received Value of order : {{ o.receivedValue }}</h6>\r\n    </div>\r\n\r\n\r\n</div>"
-
-/***/ }),
-
-/***/ "../../../../../ClientApp/app/admin/admin.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Admin; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_dataService__ = __webpack_require__("../../../../../ClientApp/app/shared/dataService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var Admin = (function () {
-    function Admin(data, router) {
-        this.data = data;
-        this.router = router;
-        this.ordersSet = false;
-        this.orders = [];
-    }
-    Admin.prototype.ngOnInit = function () {
-        var _this = this;
-        this.data.ordersRequested = true;
-        if (this.data.loginRequired) {
-            console.log("rerouted to login");
-            this.router.navigate(["login"]);
-        }
-        this.data.getAllOrders()
-            .subscribe(function (success) {
-            if (success) {
-                _this.orders = _this.data.ordersByUser;
-                console.log("adminOrders set");
-            }
-        });
-        if (this.data.ordersByUser.length > 0) {
-            console.log("ordersSet flag set");
-            this.ordersSet = true;
-        }
-    };
-    return Admin;
-}());
-Admin = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
-        selector: "admin",
-        template: __webpack_require__("../../../../../ClientApp/app/admin/admin.component.html")
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_dataService__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_dataService__["a" /* DataService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]) === "function" && _b || Object])
-], Admin);
-
-var _a, _b;
-//# sourceMappingURL=admin.component.js.map
-
-/***/ }),
-
 /***/ "../../../../../ClientApp/app/app.component.html":
 /***/ (function(module, exports) {
 
@@ -158,7 +90,6 @@ var AppComponent = (function () {
         this.data.getBtcPrice()
             .subscribe(function (success) {
             if (success) {
-                // this.btcPrice = this.data.btcPrice;
                 _this.btcPrice = _this.data.btcPrice.toFixed(2);
             }
         });
@@ -200,13 +131,12 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__login_login_component__ = __webpack_require__("../../../../../ClientApp/app/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__orderAddress_orderAddress_component__ = __webpack_require__("../../../../../ClientApp/app/orderAddress/orderAddress.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_dataService__ = __webpack_require__("../../../../../ClientApp/app/shared/dataService.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__admin_admin_component__ = __webpack_require__("../../../../../ClientApp/app/admin/admin.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__orders_orders_component__ = __webpack_require__("../../../../../ClientApp/app/orders/orders.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__home_home_component__ = __webpack_require__("../../../../../ClientApp/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__contact_contact_component__ = __webpack_require__("../../../../../ClientApp/app/contact/contact.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__about_about_component__ = __webpack_require__("../../../../../ClientApp/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__register_register_component__ = __webpack_require__("../../../../../ClientApp/app/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__register_register_success_register_success_component__ = __webpack_require__("../../../../../ClientApp/app/register/register-success/register-success.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__orders_orders_component__ = __webpack_require__("../../../../../ClientApp/app/orders/orders.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__home_home_component__ = __webpack_require__("../../../../../ClientApp/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__contact_contact_component__ = __webpack_require__("../../../../../ClientApp/app/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__about_about_component__ = __webpack_require__("../../../../../ClientApp/app/about/about.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__register_register_component__ = __webpack_require__("../../../../../ClientApp/app/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__register_register_success_register_success_component__ = __webpack_require__("../../../../../ClientApp/app/register/register-success/register-success.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -235,27 +165,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-//let routes = [
-//    { path: "", component: Shop },
-//    { path: "checkout", component: Checkout },
-//    { path: "login", component: Login },
-//    { path: "order-address", component: OrderAddress },
-//    { path: "admin", component: Admin },
-//    { path: "orders", component: OrdersComponent }
-//];
 var routes = [
-    { path: "", component: __WEBPACK_IMPORTED_MODULE_18__home_home_component__["a" /* HomeComponent */] },
-    { path: "contact", component: __WEBPACK_IMPORTED_MODULE_19__contact_contact_component__["a" /* ContactComponent */] },
-    { path: "about", component: __WEBPACK_IMPORTED_MODULE_20__about_about_component__["a" /* AboutComponent */] },
-    { path: "register", component: __WEBPACK_IMPORTED_MODULE_21__register_register_component__["a" /* RegisterComponent */] },
-    { path: "register-success", component: __WEBPACK_IMPORTED_MODULE_22__register_register_success_register_success_component__["a" /* RegisterSuccessComponent */] },
+    { path: "", component: __WEBPACK_IMPORTED_MODULE_17__home_home_component__["a" /* HomeComponent */] },
+    { path: "contact", component: __WEBPACK_IMPORTED_MODULE_18__contact_contact_component__["a" /* ContactComponent */] },
+    { path: "about", component: __WEBPACK_IMPORTED_MODULE_19__about_about_component__["a" /* AboutComponent */] },
+    { path: "register", component: __WEBPACK_IMPORTED_MODULE_20__register_register_component__["a" /* RegisterComponent */] },
+    { path: "register-success", component: __WEBPACK_IMPORTED_MODULE_21__register_register_success_register_success_component__["a" /* RegisterSuccessComponent */] },
     { path: "shop", component: __WEBPACK_IMPORTED_MODULE_11__shop_shop_component__["a" /* Shop */] },
     { path: "checkout", component: __WEBPACK_IMPORTED_MODULE_12__checkout_checkout_component__["a" /* Checkout */] },
     { path: "login", component: __WEBPACK_IMPORTED_MODULE_13__login_login_component__["a" /* Login */] },
     { path: "order-address", component: __WEBPACK_IMPORTED_MODULE_14__orderAddress_orderAddress_component__["a" /* OrderAddress */] },
-    { path: "admin", component: __WEBPACK_IMPORTED_MODULE_16__admin_admin_component__["a" /* Admin */] },
-    { path: "orders", component: __WEBPACK_IMPORTED_MODULE_17__orders_orders_component__["a" /* OrdersComponent */] }
+    { path: "orders", component: __WEBPACK_IMPORTED_MODULE_16__orders_orders_component__["a" /* OrdersComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -265,10 +185,10 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_18__home_home_component__["a" /* HomeComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__contact_contact_component__["a" /* ContactComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__about_about_component__["a" /* AboutComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__register_register_component__["a" /* RegisterComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__home_home_component__["a" /* HomeComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__contact_contact_component__["a" /* ContactComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__about_about_component__["a" /* AboutComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__register_register_component__["a" /* RegisterComponent */],
             __WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_9__shop_productList_component__["a" /* ProductList */],
             __WEBPACK_IMPORTED_MODULE_10__shop_cart_component__["a" /* Cart */],
@@ -276,9 +196,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__checkout_checkout_component__["a" /* Checkout */],
             __WEBPACK_IMPORTED_MODULE_13__login_login_component__["a" /* Login */],
             __WEBPACK_IMPORTED_MODULE_14__orderAddress_orderAddress_component__["a" /* OrderAddress */],
-            __WEBPACK_IMPORTED_MODULE_16__admin_admin_component__["a" /* Admin */],
-            __WEBPACK_IMPORTED_MODULE_17__orders_orders_component__["a" /* OrdersComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__register_register_success_register_success_component__["a" /* RegisterSuccessComponent */]
+            __WEBPACK_IMPORTED_MODULE_16__orders_orders_component__["a" /* OrdersComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__register_register_success_register_success_component__["a" /* RegisterSuccessComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -287,7 +206,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7_angularx_qrcode__["a" /* QRCodeModule */],
             __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forRoot(routes, {
                 useHash: true,
-                enableTracing: false //for Debugging of the Routes
+                enableTracing: false
             }),
             __WEBPACK_IMPORTED_MODULE_6_angular_font_awesome__["a" /* AngularFontAwesomeModule */],
             __WEBPACK_IMPORTED_MODULE_5_ngx_bootstrap_carousel__["b" /* CarouselModule */].forRoot()
@@ -418,7 +337,7 @@ ContactComponent = __decorate([
 /***/ "../../../../../ClientApp/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<carousel class=\"slide\">\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_07.jpg\" alt=\"first slide\" class=\"img-fluid\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_02.jpg\" alt=\"second slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_03.jpg\" alt=\"third slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_04.jpg\" alt=\"fouth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_05-1.jpg\" alt=\"fifth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_06.jpg\" alt=\"sixth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_01.jpg\" alt=\"seventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_08.jpg\" alt=\"eight slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_09.jpg\" alt=\"ninth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_10.jpg\" alt=\"tenth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/Bara_Zmekova_koncert_Cafe_Etage_PH11706_color-1.jpg\" alt=\"eleventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n</carousel>\r\n\r\n<!-- Page Features -->\r\n<div class=\"container\">\r\n    <div class=\"row text-center\">\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/scand2.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Scandalli</h4>\r\n                    <p class=\"card-text\">The Scandalli brand is an icon for many because of its long, distinguished history of innovation, prestige and quality.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Weltmeister.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Weltmeister</h4>\r\n                    <p class=\"card-text\">\r\n                        At Weltmeister Akkordeon Manufaktur GmbH, we supply\r\n                        the music world with Weltmeister solo, button, piano\r\n                        and folklore accordions.\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/bugari.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Armando Bugari</h4>\r\n                    <p class=\"card-text\">The Bugari Armando, proud of it's tradition, is conscious of occupying a place of importance among the various manufacturers.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Excelsior.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Excelsior</h4>\r\n                    <p class=\"card-text\">Shining like stars in the universe of sounds, EXCELSIOR accordions came to light in NY, USA in 1924.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
+module.exports = "\r\n\r\n<div style=\"background-image: url('/img/')\"></div>\r\n<carousel class=\"slide\">\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_07.jpg\" alt=\"first slide\" class=\"img-fluid\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_02.jpg\" alt=\"second slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_03.jpg\" alt=\"third slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_04.jpg\" alt=\"fouth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_05-1.jpg\" alt=\"fifth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_06.jpg\" alt=\"sixth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_01.jpg\" alt=\"seventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_08.jpg\" alt=\"eight slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_09.jpg\" alt=\"ninth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/2016_10_10.jpg\" alt=\"tenth slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n    <slide>\r\n        <img src=\"/img/scandalli/Bara_Zmekova_koncert_Cafe_Etage_PH11706_color-1.jpg\" alt=\"eleventh slide\" style=\"display: block; width: 100%;\" />\r\n    </slide>\r\n</carousel>\r\n\r\n<!-- Page Features -->\r\n<div class=\"container\">\r\n    <div class=\"row text-center\">\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/scand2.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Scandalli</h4>\r\n                    <p class=\"card-text\">The Scandalli brand is an icon for many because of its long, distinguished history of innovation, prestige and quality.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Weltmeister.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Weltmeister</h4>\r\n                    <p class=\"card-text\">\r\n                        At Weltmeister Akkordeon Manufaktur GmbH, we supply\r\n                        the music world with Weltmeister solo, button, piano\r\n                        and folklore accordions.\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/bugari.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Armando Bugari</h4>\r\n                    <p class=\"card-text\">The Bugari Armando, proud of it's tradition, is conscious of occupying a place of importance among the various manufacturers.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-lg-3 col-md-6 mb-4\">\r\n            <div class=\"card\">\r\n                <img class=\"card-img-top\" src=\"/img/scandalli/Excelsior.jpg\" alt=\"\">\r\n                <div class=\"card-body\">\r\n                    <h4 class=\"card-title\">Excelsior</h4>\r\n                    <p class=\"card-text\">Shining like stars in the universe of sounds, EXCELSIOR accordions came to light in NY, USA in 1924.</p>\r\n                </div>\r\n                <div class=\"card-footer\">\r\n                    <a routerLink=\"shop\" class=\"btn bg-dark\">Find Out More!</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -554,7 +473,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../ClientApp/app/orderAddress/orderAddress.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>orderAddress.component</title>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n\r\n</head>\r\n<body>\r\n\r\n\r\n    <h1 class=\"text-success\">\r\n        Please pay to <span style=\"color:blue\">{{ orderAddress }}</span>    <i class=\"fa fa-btc\"></i>\r\n    </h1>\r\n\r\n    <div class=\"justify-content-center\" *ngIf=\"orderAddress\">\r\n        <qrcode [qrdata]=\"orderQRInfo\" [size]=\"256\" [level]=\"'M'\"></qrcode>\r\n    </div>\r\n    <div *ngIf=\"order\">\r\n\r\n        <h3>Here are details of your order: </h3>\r\n        <h6>Order Total: {{ order.orderTotalInUSD }}<i class=\"fa fa-usd\"></i></h6>\r\n\r\n        <h6>Order Total in Bitcoin: {{ order.orderTotalInBitcoin | number:'1.1-8'}}<i class=\"fa fa-btc\"></i></h6>\r\n\r\n        <h5>Order items: </h5>\r\n        <table class=\"table\">\r\n            <thead>\r\n                <tr>\r\n                    <th scope=\"col\">Product</th>\r\n                    <th scope=\"col\">Quantity</th>\r\n                    <th scope=\"col\">Price per Unit </th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let i of order.items\">\r\n                    <td>{{ i.product.title }}</td>\r\n                    <td>{{ i.quantity }}</td>\r\n                    <td>{{ i.unitPrice }} <i class=\"fa fa-usd\"></i></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n    <h2 class=\"text-danger\" *ngIf=\"paymentNotSatisfied\">{{ sumOfTransactions }}<i class=\"fa fa-btc\"></i> has been paid!</h2>\r\n    <h2 class=\"text-success\" *ngIf=\"paymentCorrect\">Order has been paid for!</h2>\r\n    <h4 class=\"text-success\" *ngIf=\"paymentExceeded\">You paid {{ paymentDiffBTC }}<i class=\"fa fa-btc\"></i> more!</h4>\r\n    <h4 class=\"text-info\" *ngIf=\"paymentNotSatisfied && (sumOfTransactions != 0)\">You paid {{ sumOfTransactions }}<i class=\"fa fa-btc\"></i>, to complete purchase please pay {{ (order.orderTotalInBitcoin - sumOfTransactions) | number:'1.1-8'}}<i class=\"fa fa-btc\"></i> more!</h4>\r\n\r\n    <h6 class=\"text-secondary\">Transactions for this order:</h6>\r\n    <ul id=\"messagesList\"></ul>\r\n\r\n</body>\r\n</html>"
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title>orderAddress.component</title>\r\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css\" />\r\n\r\n</head>\r\n<body>\r\n    <div class=\"container\">\r\n        <div>\r\n            <h3 class=\"text-success\">\r\n                Please pay to <span style=\"color:blue\">{{ orderAddress }}</span>    <i class=\"fa fa-btc\"></i>\r\n            </h3>\r\n\r\n            <div class=\"justify-content-center\" *ngIf=\"orderAddress\">\r\n                <qrcode [qrdata]=\"orderQRInfo\" [size]=\"280\" [level]=\"'M'\"></qrcode>\r\n            </div>\r\n\r\n        </div>\r\n\r\n        <div>\r\n            <br /><br /><br />\r\n            <h2 class=\"text-danger\" *ngIf=\"paymentNotSatisfied\">{{ sumOfTransactions }}<i class=\"fa fa-btc\"></i> has been paid!</h2>\r\n            <h2 class=\"text-success\" *ngIf=\"paymentCorrect\">Order has been paid for!</h2>\r\n            <h4 class=\"text-success\" *ngIf=\"paymentExceeded\">You paid {{ paymentDiffBTC }}<i class=\"fa fa-btc\"></i> more!</h4>\r\n            <h4 class=\"text-info\" *ngIf=\"paymentNotSatisfied && (sumOfTransactions != 0)\">You paid {{ sumOfTransactions }}<i class=\"fa fa-btc\"></i>, to complete purchase please pay {{ (order.orderTotalInBitcoin - sumOfTransactions) | number:'1.1-8'}}<i class=\"fa fa-btc\"></i> more!</h4>\r\n\r\n            <h6 class=\"text-secondary\">Transactions for this order:</h6>\r\n            <ul id=\"messagesList\"></ul>\r\n        </div>\r\n    </div>\r\n\r\n    <div *ngIf=\"order\">\r\n\r\n        <h3>Here are details of your order: </h3>\r\n        <h6>Order Total: {{ order.orderTotalInUSD }}<i class=\"fa fa-usd\"></i></h6>\r\n\r\n        <h6>Order Total in Bitcoin: {{ order.orderTotalInBitcoin | number:'1.1-8'}}<i class=\"fa fa-btc\"></i></h6>\r\n\r\n        <h5>Order items: </h5>\r\n        <table class=\"table\">\r\n            <thead>\r\n                <tr>\r\n                    <th scope=\"col\">Product</th>\r\n                    <th scope=\"col\">Quantity</th>\r\n                    <th scope=\"col\">Price per Unit </th>\r\n                </tr>\r\n            </thead>\r\n            <tbody>\r\n                <tr *ngFor=\"let i of order.items\">\r\n                    <td>{{ i.product.title }}</td>\r\n                    <td>{{ i.quantity }}</td>\r\n                    <td>{{ i.unitPrice }} <i class=\"fa fa-usd\"></i></td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n\r\n    <p class=\"text-info\" *ngIf=\"order\">Please complete your payment in 15 minutes. </p>\r\n</body>\r\n</html>"
 
 /***/ }),
 
@@ -605,8 +524,6 @@ var OrderAddress = (function () {
                 _this.order = _this.data.orderFromServer;
                 _this.orderAddress = _this.data.orderAddress;
                 _this.orderQRInfo = "bitcoin:" + _this.orderAddress + "?" + "amount=" + _this.order.orderTotalInBitcoin;
-                //console.log(this.order);
-                //console.log(this.orderQRInfo);
             }
         });
         var connection = new __WEBPACK_IMPORTED_MODULE_2__aspnet_signalr__["a" /* HubConnectionBuilder */]()
@@ -701,7 +618,6 @@ var OrdersComponent = (function () {
     OrdersComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.data.loginRequired) {
-            console.log("rerouted to login from orders.component");
             this.data.ordersRequested = true;
             this.router.navigate(["login"]);
         }
@@ -709,11 +625,9 @@ var OrdersComponent = (function () {
             .subscribe(function (success) {
             if (success) {
                 _this.orders = _this.data.ordersByUser;
-                console.log("ordersByUser set");
             }
         });
         if (this.data.ordersByUser.length > 0) {
-            console.log("ordersSet flag set");
             this.ordersSet = true;
         }
     };
@@ -820,7 +734,6 @@ var RegisterComponent = (function () {
         var _this = this;
         this.data.register(this.userInfo)
             .subscribe(function (success) {
-            // handle the success : )
             _this.router.navigate(['register-success']);
         }, function (err) { return _this.errorMessage = "Failed to login"; });
     };
@@ -886,7 +799,6 @@ var DataService = (function () {
     };
     DataService.prototype.getAllOrders = function () {
         var _this = this;
-        console.log("in getAllOrders");
         return this.http.get("/api/orders", {
             headers: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]()
                 .set("Authorization", "Bearer " + this.token)
@@ -909,9 +821,11 @@ var DataService = (function () {
     };
     DataService.prototype.getOrderAddress = function () {
         var _this = this;
-        var url = "/api/OrderAddress/" + this.order.orderNumber;
+        var url = "/api/orders/" + this.order.orderNumber;
         return this.http
-            .get(url)
+            .get(url, {
+            headers: new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]().set("Authorization", "Bearer " + this.token)
+        })
             .map(function (data) {
             _this.orderFromServer = data;
             _this.orderAddress = data.bitcoinAddress;
@@ -1025,7 +939,7 @@ var OrderItem = (function () {
 /***/ "../../../../../ClientApp/app/shop/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Shopping Cart</h3>\r\n<div>#/Items: {{ data.order.items.length }}</div>\r\n<div>Subtotal: {{ data.order.subtotal | currency:\"USD\":true }}</div>\r\n<table class=\"table table-sm table-hover\">\r\n    <thead>\r\n        <tr>\r\n            <td>Product</td>\r\n            <td>#</td>\r\n            <td>$</td>\r\n            <td>Total</td>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td>{{o.productCategory}} - {{ o.productTitle }}</td> <!--editor inheritance :)-->\r\n            <td>{{o.quantity}}</td>\r\n            <td>{{ o.unitPrice | currency:\"USD\":true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity | currency:\"USD\":true) }}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<button class=\"btn text-light bg-dark btn-lg float-right\" *ngIf=\"data.order.items.length > 0\" (click)=\"onCheckout()\">Checkout</button>"
+module.exports = "<h3>Shopping Cart</h3>\r\n<div>#/Items: {{ data.order.items.length }}</div>\r\n<div>Subtotal: {{ data.order.subtotal | currency:\"USD\":true }}</div>\r\n<table class=\"table table-sm table-hover\">\r\n    <thead>\r\n        <tr>\r\n            <td>Product</td>\r\n            <td>#</td>\r\n            <td>$</td>\r\n            <td>Total</td>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let o of data.order.items\">\r\n            <td>{{o.productCategory}} - {{ o.productTitle }}</td> \r\n            <td>{{o.quantity}}</td>\r\n            <td>{{ o.unitPrice | currency:\"USD\":true }}</td>\r\n            <td>{{ (o.unitPrice * o.quantity | currency:\"USD\":true) }}</td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n\r\n<button class=\"btn text-light bg-dark btn-lg float-right\" *ngIf=\"data.order.items.length > 0\" (click)=\"onCheckout()\">Checkout</button>"
 
 /***/ }),
 
@@ -1101,7 +1015,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../ClientApp/app/shop/productList.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n\r\n    <!-- Page Heading -->\r\n    <h1 class=\"my-4\">\r\n        Worldwide Brands\r\n        <small>Bitcoin Accepted</small>\r\n    </h1>\r\n\r\n    <!-- Project One -->\r\n    <div class=\"row\" *ngFor=\"let p of products\">\r\n        <div class=\"col-md-7\">\r\n            <a (click)=\"addProduct(p)\">\r\n                <img src=\"/img/productImg/{{p.artId}}.jpg\" class=\"img-fluid\" alt=\"{{ p.title}}\" />\r\n            </a>\r\n        </div>\r\n        <div class=\"col-md-5\">\r\n            <div class=\"product-name\"><strong>{{p.title}}</strong></div>\r\n            <br />\r\n            <div><strong>Price: </strong>{{ p.price | currency:\"USD\":true}}</div>\r\n            <div><strong>Size: </strong> {{ p.size }}</div>\r\n            <div><strong>Keys: </strong> {{ p.keys }}</div>\r\n            <div><strong>Reeds: </strong> {{ p.reeds }}</div>\r\n            <div><strong>Registers: </strong> {{ p.registers }}</div>\r\n            <div><strong>Basses: </strong> {{ p.basses }}</div>\r\n            <div><strong>Weight: </strong> {{ p.weight }}</div>\r\n            <div><strong>Cassoto: </strong> {{ p.cassoto }}</div>\r\n\r\n\r\n            <button id=\"buyButton\" class=\"btn text-light bg-dark btn-lg float-right\" (click)=\"addProduct(p)\">Add To Cart</button>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"container\">\r\n\r\n    <h1 class=\"my-4\">\r\n    </h1>\r\n\r\n    <div class=\"row\" *ngFor=\"let p of products\">\r\n        <div class=\"col-md-7\">\r\n            <a (click)=\"addProduct(p)\">\r\n                <img src=\"/img/productImg/{{p.artId}}.jpg\" class=\"img-fluid\" alt=\"{{ p.title}}\" />\r\n            </a>\r\n        </div>\r\n        <div class=\"col-md-5\">\r\n            <div class=\"product-name\"><strong>{{p.title}}</strong></div>\r\n            <br />\r\n            <div><strong>Price: </strong>{{ p.price | currency:\"USD\":true}}</div>\r\n            <div><strong>Size: </strong> {{ p.size }}</div>\r\n            <div><strong>Keys: </strong> {{ p.keys }}</div>\r\n            <div><strong>Reeds: </strong> {{ p.reeds }}</div>\r\n            <div><strong>Registers: </strong> {{ p.registers }}</div>\r\n            <div><strong>Basses: </strong> {{ p.basses }}</div>\r\n            <div><strong>Weight: </strong> {{ p.weight }}</div>\r\n            <div><strong>Cassoto: </strong> {{ p.cassoto }}</div>\r\n\r\n\r\n            <button id=\"buyButton\" class=\"btn text-light bg-dark btn-lg float-right\" (click)=\"addProduct(p)\">Add To Cart</button>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 

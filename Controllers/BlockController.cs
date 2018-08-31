@@ -43,6 +43,8 @@ namespace AccordionFair.Controllers
         [HttpGet("{id}")]
         public async Task GetAsync(string id) //id is blockId
         {
+            logger.LogInformation("New block has been mined");
+
             RPCCredentialString cred = new RPCCredentialString();
             cred.UserPassword = new NetworkCredential(config["NodeCredentials:RPCUser"], config["NodeCredentials:RPCPassword"]);
             RPCClient client = new RPCClient(cred, Network.TestNet);

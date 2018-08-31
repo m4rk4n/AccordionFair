@@ -22,21 +22,12 @@ var checkout_component_1 = require("./checkout/checkout.component");
 var login_component_1 = require("./login/login.component");
 var orderAddress_component_1 = require("./orderAddress/orderAddress.component");
 var dataService_1 = require("./shared/dataService");
-var admin_component_1 = require("./admin/admin.component");
 var orders_component_1 = require("./orders/orders.component");
 var home_component_1 = require("./home/home.component");
 var contact_component_1 = require("./contact/contact.component");
 var about_component_1 = require("./about/about.component");
 var register_component_1 = require("./register/register.component");
 var register_success_component_1 = require("./register/register-success/register-success.component");
-//let routes = [
-//    { path: "", component: Shop },
-//    { path: "checkout", component: Checkout },
-//    { path: "login", component: Login },
-//    { path: "order-address", component: OrderAddress },
-//    { path: "admin", component: Admin },
-//    { path: "orders", component: OrdersComponent }
-//];
 var routes = [
     { path: "", component: home_component_1.HomeComponent },
     { path: "contact", component: contact_component_1.ContactComponent },
@@ -47,7 +38,6 @@ var routes = [
     { path: "checkout", component: checkout_component_1.Checkout },
     { path: "login", component: login_component_1.Login },
     { path: "order-address", component: orderAddress_component_1.OrderAddress },
-    { path: "admin", component: admin_component_1.Admin },
     { path: "orders", component: orders_component_1.OrdersComponent }
 ];
 var AppModule = /** @class */ (function () {
@@ -67,7 +57,6 @@ var AppModule = /** @class */ (function () {
                 checkout_component_1.Checkout,
                 login_component_1.Login,
                 orderAddress_component_1.OrderAddress,
-                admin_component_1.Admin,
                 orders_component_1.OrdersComponent,
                 register_success_component_1.RegisterSuccessComponent
             ],
@@ -78,7 +67,7 @@ var AppModule = /** @class */ (function () {
                 angularx_qrcode_1.QRCodeModule,
                 router_1.RouterModule.forRoot(routes, {
                     useHash: true,
-                    enableTracing: false //for Debugging of the Routes
+                    enableTracing: false
                 }),
                 angular_font_awesome_1.AngularFontAwesomeModule,
                 carousel_1.CarouselModule.forRoot()

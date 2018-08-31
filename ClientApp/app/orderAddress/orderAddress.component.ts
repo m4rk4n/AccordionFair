@@ -23,7 +23,7 @@ export class OrderAddress implements OnInit {
     public order: Order;
     public orderAddress: string = "";
     public orderQRInfo = "";
-
+    public paymentTime: Date;
 
     public msgs: string[] = [];
     public payments: number[] = [];
@@ -44,6 +44,7 @@ export class OrderAddress implements OnInit {
                     this.btcPrice = this.data.btcPrice; 
             });
 
+        
         this.data.getOrderAddress()
             .subscribe(success => {
                 if (success) {
@@ -51,11 +52,8 @@ export class OrderAddress implements OnInit {
                     this.orderAddress = this.data.orderAddress;
 
                     this.orderQRInfo = "bitcoin:" + this.orderAddress + "?" + "amount=" + this.order.orderTotalInBitcoin;
-                    //console.log(this.order);
-                    //console.log(this.orderQRInfo);
                 }
             });
-
 
       
 
@@ -87,9 +85,6 @@ export class OrderAddress implements OnInit {
                 this.paymentNotSatisfied = false;
                 this.paymentDiffBTC = totalAmountOfBitcoinPayed - this.order.orderTotalInBitcoin;
             }
-
-            
-            
 
             const li = document.createElement("li");
             li.textContent = txLog;

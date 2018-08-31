@@ -22,7 +22,6 @@ var AppComponent = /** @class */ (function () {
         this.data.getBtcPrice()
             .subscribe(function (success) {
             if (success) {
-                // this.btcPrice = this.data.btcPrice;
                 _this.btcPrice = _this.data.btcPrice.toFixed(2);
             }
         });

@@ -17,6 +17,8 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
+
+
 namespace AccordionFair.Controllers
 {
     [Route("api/[Controller]")]
@@ -82,17 +84,23 @@ namespace AccordionFair.Controllers
             }
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
         {
             try
             {
-                var order = repo.GetOrderById(User.Identity.Name, id);
+                var order = repo.GetOrderByOrderNumber(id.ToString());
 
                 if (order != null)
-                    return Ok(mapper.Map<Order, OrderViewModel>(order));
+                {
+                    logger.LogInformation($"Order with orderNumber {id.ToString()}  Found" + System.DateTime.Now);
+                    return Ok(order);
+                }
                 else
-                    return NotFound();
+                {
+                    logger.LogInformation($"Order with orderNumber {id.ToString()} Not Found" + System.DateTime.Now);
+                    return BadRequest();
+                }
             }
             catch (Exception ex)
             {
@@ -139,11 +147,14 @@ namespace AccordionFair.Controllers
                     repo.AddOrder(newOrder);
                     if (repo.SaveAll())
                     {
+                        logger.LogInformation("New order created");
                          return Created($"/api/orders/{newOrder.Id}", mapper.Map<Order, OrderViewModel>(newOrder)); 
                     }
                 }
                 else
                 {
+                    logger.LogInformation("Order creation failed");
+
                     return BadRequest(ModelState);
                 }
             }

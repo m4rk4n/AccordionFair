@@ -29,7 +29,6 @@ var RegisterComponent = /** @class */ (function () {
         var _this = this;
         this.data.register(this.userInfo)
             .subscribe(function (success) {
-            // handle the success : )
             _this.router.navigate(['register-success']);
         }, function (err) { return _this.errorMessage = "Failed to login"; });
     };

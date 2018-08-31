@@ -39,8 +39,6 @@ var OrderAddress = /** @class */ (function () {
                 _this.order = _this.data.orderFromServer;
                 _this.orderAddress = _this.data.orderAddress;
                 _this.orderQRInfo = "bitcoin:" + _this.orderAddress + "?" + "amount=" + _this.order.orderTotalInBitcoin;
-                //console.log(this.order);
-                //console.log(this.orderQRInfo);
             }
         });
         var connection = new signalR.HubConnectionBuilder()

@@ -21,7 +21,6 @@ namespace AccordionFair.Services
 
         public async Task SendMessage(string message)
         {
-            string name = Context.User.Identity.Name;
             await Clients.Caller.SendAsync("ReceiveNotification", message);
         }
 
@@ -31,15 +30,11 @@ namespace AccordionFair.Services
             var userName = lastOrder.User.UserName;
             
              await Groups.AddToGroupAsync(Context.ConnectionId, userName);
-            //Groups.AddToGroupAsync(Context.ConnectionId, userid);
             await base.OnConnectedAsync();
         }
 
-        // it should remove connection from group automaticaly when it disconnects
         public override async Task OnDisconnectedAsync(Exception exception)
         {   
-            // this one is not needed, signalR removes it  by itself
-            // await Groups.RemoveFromGroupAsync(Context.ConnectionId, );
             await base.OnDisconnectedAsync(exception);
         }
     }

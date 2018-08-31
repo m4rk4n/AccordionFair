@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
     onRegister() {
         this.data.register(this.userInfo)
             .subscribe(success => {
-               // handle the success : )
                 this.router.navigate(['register-success']);
                 
             }, err => this.errorMessage = "Failed to login")

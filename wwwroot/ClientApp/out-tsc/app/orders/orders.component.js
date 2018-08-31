@@ -22,7 +22,6 @@ var OrdersComponent = /** @class */ (function () {
     OrdersComponent.prototype.ngOnInit = function () {
         var _this = this;
         if (this.data.loginRequired) {
-            console.log("rerouted to login from orders.component");
             this.data.ordersRequested = true;
             this.router.navigate(["login"]);
         }
@@ -30,11 +29,9 @@ var OrdersComponent = /** @class */ (function () {
             .subscribe(function (success) {
             if (success) {
                 _this.orders = _this.data.ordersByUser;
-                console.log("ordersByUser set");
             }
         });
         if (this.data.ordersByUser.length > 0) {
-            console.log("ordersSet flag set");
             this.ordersSet = true;
         }
     };

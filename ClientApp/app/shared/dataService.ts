@@ -32,7 +32,6 @@ export class DataService {
     }
 
     getAllOrders(): Observable<boolean> {
-        console.log("in getAllOrders");
         return this.http.get("/api/orders", {
             headers: new HttpHeaders()
                 .set("Authorization", "Bearer " + this.token)
@@ -57,13 +56,15 @@ export class DataService {
 
     getOrderAddress(): Observable<boolean>{
        
-        var url = "/api/OrderAddress/" + this.order.orderNumber;
+        var url = "/api/orders/" + this.order.orderNumber;
         return this.http
-                .get(url)
+            .get(url, {
+                headers: new HttpHeaders().set("Authorization", "Bearer " + this.token)
+            })
             .map((data: any) => {
                     this.orderFromServer = data;
                     this.orderAddress = data.bitcoinAddress; 
-                this.order.orderAddress = data.bitcoinAddress;
+                    this.order.orderAddress = data.bitcoinAddress;
                     return true;
             });
     }
