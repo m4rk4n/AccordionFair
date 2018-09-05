@@ -12,7 +12,7 @@
   },
 
   "Tokens": {
-    "Key": ";asdlkfh;ahgpjajdga",
+    "Key": "4asdlkfh9ahgpjajd.ga",
     "issuer": "localhost",
     "Audience": "users",
     "roles": [ "Admin", "User" ]

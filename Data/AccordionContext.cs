@@ -11,12 +11,7 @@ namespace AccordionFair.Data
 {
     public class AccordionContext : IdentityDbContext<StoreUser>
     {
-        public AccordionContext(DbContextOptions<AccordionContext> options): base(options)
-        {
-
-        }
-
-
+        public AccordionContext(DbContextOptions<AccordionContext> options): base(options){ }
 
         public DbSet<Product> Products{ get; set; }
         public DbSet<Order> Orders { get; set; }

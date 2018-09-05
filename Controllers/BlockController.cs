@@ -67,9 +67,9 @@ namespace AccordionFair.Controllers
 
                     foreach (var unspentOutput in unspent.Where(tx => tx.Address.ToString() == order.BitcoinAddress))
                     {
-                        if (unspentOutput.Confirmations < 6) // one of transactions has less than 6 confirmations
+                        if (unspentOutput.Confirmations < 6) // one of transactions of order has less than 6 confirmations
                         {
-                            confirmed = false;
+                            confirmed = false; // all transactions for this order have not been confirmed
                             break;
                         }
                     }

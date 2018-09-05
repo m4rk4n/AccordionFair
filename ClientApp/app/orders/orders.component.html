@@ -6,7 +6,7 @@
 <div *ngIf="data.ordersByUser.length > 0">
 
     <div *ngFor="let o of orders">
-
+        <div *ngIf="o.orderPaymentValid || o.receivedValue > 0"></div>
             <h5>Order {{ o.orderNumber}} Info</h5>
             <h6>Name: {{ o.user.firstName }}  {{o.user.lastName}}</h6>
             <h6>Email: {{ o.user.email }}</h6>
