@@ -13,53 +13,13 @@ namespace AccordionFair.Controllers
 {
     public class AppController : Controller
     {
-        private readonly IAccordionRepository repository;
-
-        public AppController( IAccordionRepository repository)
-        {
-            this.repository = repository;
-        }
+        public AppController()
+        { }
 
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpGet("contact")]
-        public IActionResult Contact()
-        {
-
-            ViewBag.Title = "Contact us";
-            return View();
-        }
-
-        [HttpPost("contact")]
-        public IActionResult Contact(ContactViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                ViewBag.UserMessage = "Mail Sent";
-                ModelState.Clear();
-                return View();
-            }
-            else
-            {
-                return View();
-            }
-            
-        }
-
-        public IActionResult About()
-        {
-            ViewBag.Title = "About us";
-
-            return View();
-        }
-
-        //[Authorize]
-        public IActionResult Shop()
-        {
-            return View();
-        }
     }
 }

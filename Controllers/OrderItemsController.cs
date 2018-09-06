@@ -50,7 +50,6 @@ namespace AccordionFair.Controllers
                     return Ok(mapper.Map<OrderItem, OrderItemViewModel>(item));
                 }
             }
-            
             return NotFound();
         }
     }

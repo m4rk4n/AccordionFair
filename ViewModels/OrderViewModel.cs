@@ -16,7 +16,6 @@ namespace AccordionFair.ViewModels
         [MinLength(4)]
         public string OrderNumber { get; set; }
         public double BtcPrice { get; set; }
-
         public ICollection<OrderItemViewModel> Items { get; set; }
     }
 }

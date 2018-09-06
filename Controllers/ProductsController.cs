@@ -28,7 +28,6 @@ namespace AccordionFair.Controllers
             try
             {
                 return Ok(repo.GetAllProducts());
-
             }
             catch (Exception ex)
             {

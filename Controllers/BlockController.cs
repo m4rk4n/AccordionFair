@@ -18,23 +18,17 @@ namespace AccordionFair.Controllers
     public class BlockController
     {
         private readonly IAccordionRepository repo;
-        private readonly SignInManager<StoreUser> signInManager;
-        private readonly UserManager<StoreUser> userManager;
         private readonly ILogger<BlockController> logger;
         private readonly IMailService mailService;
         private readonly IConfiguration config;
 
         public BlockController(IAccordionRepository repo,
-                                SignInManager<StoreUser> signInManager,
-                                UserManager<StoreUser> userManager,
                                 ILogger<BlockController> logger,
                                 IMailService mailService,
                                 IConfiguration config
                                 )
         {
             this.repo = repo;
-            this.signInManager = signInManager;
-            this.userManager = userManager;
             this.logger = logger;
             this.mailService = mailService;
             this.config = config;

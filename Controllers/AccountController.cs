@@ -80,7 +80,6 @@ namespace AccordionFair.Controllers
                 logger.LogInformation("Failed to create a user, probably there is a user with same email or password don't adhere to rules");
 
                 return BadRequest();
-                
             }
             logger.LogInformation("ModelState is not valid");
             return BadRequest();

@@ -29,21 +29,18 @@ namespace AccordionFair.Controllers
         private readonly ILogger<OrdersController> logger;
         private readonly IMapper mapper;
         private readonly UserManager<StoreUser> userManager;
-        private readonly IHubContext<NotifyHub> hub;
         private readonly IConfiguration config;
 
         public OrdersController(IAccordionRepository repo, 
             ILogger<OrdersController> logger,
             IMapper mapper,
             UserManager<StoreUser> userManager,
-            IHubContext<NotifyHub> hub,
             IConfiguration config)
         {
             this.repo = repo;
             this.logger = logger;
             this.mapper = mapper;
             this.userManager = userManager;
-            this.hub = hub;
             this.config = config;
         }
 
@@ -129,7 +126,6 @@ namespace AccordionFair.Controllers
                     if (newOrder.BitcoinPrice == 0)
                     {
                         logger.LogError($"BtcPrice is not correctly set modelPrice: {model.BtcPrice} newOrderPrice: {newOrder.BitcoinPrice}");
-
                         throw new Exception($"BtcPrice is not correctly set modelPrice: {model.BtcPrice} newOrderPrice: {newOrder.BitcoinPrice}");
                     }
 
@@ -154,7 +150,6 @@ namespace AccordionFair.Controllers
                 else
                 {
                     logger.LogInformation("Order creation failed");
-
                     return BadRequest(ModelState);
                 }
             }
