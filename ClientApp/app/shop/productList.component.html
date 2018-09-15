@@ -1,8 +1,6 @@
 ﻿<div class="container">
-
     <h1 class="my-4">
     </h1>
-
     <div class="row" *ngFor="let p of products">
         <div class="col-md-7">
             <a (click)="addProduct(p)">
@@ -20,8 +18,6 @@
             <div><strong>Basses: </strong> {{ p.basses }}</div>
             <div><strong>Weight: </strong> {{ p.weight }}</div>
             <div><strong>Cassoto: </strong> {{ p.cassoto }}</div>
-
-
             <button id="buyButton" class="btn text-light bg-dark btn-lg float-right" (click)="addProduct(p)">Add To Cart</button>
         </div>
     </div>

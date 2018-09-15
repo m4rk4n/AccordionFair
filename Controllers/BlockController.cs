@@ -51,7 +51,7 @@ namespace AccordionFair.Controllers
                 if (order.DisregardOrder || order.OrderTransactionsConfirmed)
                     continue;
 
-                if (order.OrderDate.AddMinutes(15) < DateTime.Now && order.ReceivedValue == 0) //15 minutes or more has passed since order has been placed and nothing has been payed
+                if (order.OrderDate.AddMinutes(15) < DateTime.Now && order.ReceivedValue < order.OrderTotalInBitcoin) //15 minutes or more has passed since order has been placed and payment did not met the requirements
                     order.DisregardOrder = true;
 
 
@@ -63,7 +63,7 @@ namespace AccordionFair.Controllers
                     {
                         if (unspentOutput.Confirmations < 6) // one of transactions of order has less than 6 confirmations
                         {
-                            confirmed = false; // all transactions for this order have not been confirmed
+                            confirmed = false; //  transactions for this order have not been confirmed
                             break;
                         }
                     }

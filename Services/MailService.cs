@@ -47,7 +47,7 @@ namespace AccordionFair.Services
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(mail);
                 }
-                logger.LogInformation("Mail sent");
+                logger.LogInformation($"Mail sent to {to}");
                 return true;
             }
             catch (Exception ex)

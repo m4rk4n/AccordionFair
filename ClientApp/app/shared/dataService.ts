@@ -55,7 +55,6 @@ export class DataService {
     }
 
     getOrderAddress(): Observable<boolean>{
-       
         var url = "/api/orders/" + this.order.orderNumber;
         return this.http
             .get(url, {

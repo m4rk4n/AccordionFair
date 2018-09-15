@@ -11,9 +11,7 @@ import { DecimalPipe } from '@angular/common';
 @Component({
     selector: "order-address",
     templateUrl: "orderAddress.component.html",
-    styleUrls: [
-        "orderAddress.component.css"
-    ]
+    styleUrls: [    ]
 })
 
 export class OrderAddress implements OnInit {
@@ -24,7 +22,6 @@ export class OrderAddress implements OnInit {
     public orderAddress: string = "";
     public orderQRInfo = "";
     public paymentTime: Date;
-
     public msgs: string[] = [];
     public payments: number[] = [];
     public sumOfTransactions: number = 0;
@@ -37,14 +34,12 @@ export class OrderAddress implements OnInit {
 
     ngOnInit(): void {
 
-
         this.data.getBtcPrice()
             .subscribe(success => {
                 if (success)
                     this.btcPrice = this.data.btcPrice; 
             });
-
-        
+ 
         this.data.getOrderAddress()
             .subscribe(success => {
                 if (success) {
@@ -55,11 +50,8 @@ export class OrderAddress implements OnInit {
                 }
             });
 
-      
-
-
         let connection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:8888/notifyHub", { accessTokenFactory: () => this.data.token }) //JWT Bearer
+            .withUrl("/notifyHub", { accessTokenFactory: () => this.data.token }) //JWT Bearer
             .build();
 
             connection

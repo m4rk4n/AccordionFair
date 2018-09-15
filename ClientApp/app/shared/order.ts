@@ -11,7 +11,10 @@ export class Order {
     orderTotalInBitcoin: number;
 
     get subtotal(): number {
-        var sub = _.sum(_.map(this.items, i => i.unitPrice * i.quantity));
+        var sub =
+            _.sum(_.map(
+                this.items,
+                i => i.unitPrice * i.quantity));
        return sub;
     };
 }

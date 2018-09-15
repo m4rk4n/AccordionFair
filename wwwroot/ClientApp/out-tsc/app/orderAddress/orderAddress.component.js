@@ -42,7 +42,7 @@ var OrderAddress = /** @class */ (function () {
             }
         });
         var connection = new signalR.HubConnectionBuilder()
-            .withUrl("http://localhost:8888/notifyHub", { accessTokenFactory: function () { return _this.data.token; } }) //JWT Bearer
+            .withUrl("/notifyHub", { accessTokenFactory: function () { return _this.data.token; } }) //JWT Bearer
             .build();
         connection
             .start()
@@ -84,9 +84,7 @@ var OrderAddress = /** @class */ (function () {
         core_1.Component({
             selector: "order-address",
             templateUrl: "orderAddress.component.html",
-            styleUrls: [
-                "orderAddress.component.css"
-            ]
+            styleUrls: []
         }),
         __metadata("design:paramtypes", [dataService_1.DataService])
     ], OrderAddress);
